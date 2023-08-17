@@ -25,7 +25,7 @@ class EventQueries:
                     """
                     SELECT id, creator_id,name,start_date,end_date,description,num_of_attendees
                     FROM events
-                    
+
                     """
                 )
 
@@ -36,7 +36,7 @@ class EventQueries:
                         record[column.name] = row[i]
                     result.append(EventsOut(**record))
 
-    
+
 
     def create_event(self,data) -> EventsOut:
         with pool.connection() as conn:
@@ -53,7 +53,7 @@ class EventQueries:
                     INSERT INTO events (name, start_date, end_date, description, num_
                     of_attendees)
                     VALUES (%s, %s, %s, %s, %s)
-                    RETURNING name, start_date, end_date, description, num_of_attendees, 
+                    RETURNING name, start_date, end_date, description, num_of_attendees,
 
                     """,
                     params
@@ -65,8 +65,8 @@ class EventQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                 return EventsOut(**record)
-            
-    
+
+
 
     def get_event(self,id)-> EventsOut:
         with pool.connection() as conn:
@@ -77,7 +77,7 @@ class EventQueries:
                     SELECT name,start_date,end_date,description,num_of_attendees
                     FROM events
                     WHERE id = %s
-                    
+
                     """,
                     [id],
                 )
@@ -89,7 +89,7 @@ class EventQueries:
                         record[column.name]=row[i]
                 return EventsOut(**record)
 
-            
+
     def delete_event(self, id) -> None:
         with pool.connection() as conn:
             with conn.cursor() as cur:
