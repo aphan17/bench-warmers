@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 import os
 from psycopg_pool import ConnectionPool
 from pydantic import BaseModel
@@ -44,3 +47,4 @@ class UserQueries:
                 id = result.fetchone()[0]
                 data = user.dict()
                 return UserOut(id=id, **data)
+>>>>>>> main

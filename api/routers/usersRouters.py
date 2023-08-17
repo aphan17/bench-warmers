@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 from fastapi import APIRouter, Depends
 from queries.usersQueries import UserIn, UserQueries, UserOut
 
@@ -9,3 +12,4 @@ def create_user(
         queries: UserQueries = Depends()
     ):
     return queries.create_user(user)
+>>>>>>> main
