@@ -6,7 +6,7 @@ from routers import eventsRouters, usersRouters
 
 app = FastAPI()
 
-# app.include_router(eventsRouters.router)
+app.include_router(eventsRouters.router)
 app.include_router(usersRouters.router)
 
 app.add_middleware(
