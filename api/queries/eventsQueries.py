@@ -8,24 +8,22 @@ pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
 class EventsOut(BaseModel):
-    id:int
-    creator_id:int
-    name:str
-    start_date:date
-    end_date:date
-    description:str
-    num_of_attendees:int
-
-
-class EventsIn(BaseModel):
-
+    id: int
     creator_id: int
-    name:str
+    name: str
     start_date: date
-    end_date:date
+    end_date: date
     description: str
     num_of_attendees: int
 
+
+class EventsIn(BaseModel):
+    creator_id: int
+    name: str
+    start_date: date
+    end_date: date
+    description: str
+    num_of_attendees: int
 
 
 class EventsListOut(BaseModel):
@@ -42,13 +40,12 @@ class EventQueries:
                     FROM events
 
                     """
-
                 )
 
-                result =[]
+                result = []
                 for row in cur.fetchall():
-                    record ={}
-                    for i,column in enumerate(cur.description):
+                    record = {}
+                    for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     result.append(EventsOut(**record))
                 return result
@@ -71,8 +68,7 @@ class EventQueries:
                         event.end_date,
                         event.description,
                         event.num_of_attendees,
-
-                    ]
+                    ],
                 )
 
                 id = result.fetchone()[0]
@@ -126,15 +122,14 @@ class EventQueries:
                     WHERE id = %s
                     """,
                     [
-
                         event.creator_id,
                         event.name,
                         event.start_date,
                         event.end_date,
                         event.description,
                         event.num_of_attendees,
-                        event_id
-                    ]
+                        event_id,
+                    ],
                 )
                 old_data = event.dict()
                 return EventsOut(id=event_id, **old_data)

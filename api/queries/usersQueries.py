@@ -2,6 +2,7 @@ import os
 from psycopg_pool import ConnectionPool
 from typing import List, Literal
 from pydantic import BaseModel
+from typing import Union
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
@@ -17,6 +18,10 @@ class UserOut(BaseModel):
 
 class UserListOut(BaseModel):
     users: list[UserOut]
+
+
+class Error(BaseModel):
+    message: str
 
 
 class Error(BaseModel):
@@ -86,22 +91,68 @@ class UserQueries:
                     return None
 
     def create_user(self, user: UserIn) -> UserOut:
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                result = cur.execute(
-                    """
-                    INSERT INTO users (username, firstName, lastName, bio, avatar)
-                    VALUES (%s, %s, %s, %s, %s)
-                    RETURNING id;
-                    """,
-                    [
-                        user.username,
-                        user.firstName,
-                        user.lastName,
-                        user.bio,
-                        user.avatar,
-                    ],
-                )
-                id = result.fetchone()[0]
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    result = cur.execute(
+                        """
+                        INSERT INTO users (username, firstName, lastName, bio, avatar)
+                        VALUES (%s, %s, %s, %s, %s)
+                        RETURNING id;
+                        """,
+                        [
+                            user.username,
+                            user.firstName,
+                            user.lastName,
+                            user.bio,
+                            user.avatar,
+                        ],
+                    )
+                    id = result.fetchone()[0]
+                    data = user.dict()
+                    return UserOut(id=id, **data)
+        except Exception as e:
+            return {'message': "could not create user"}
+
+    def update_user(self, user_id:int, user:UserIn) -> Union[UserOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        UPDATE users
+                        SET username = %s
+                         , firstName = %s
+                         , lastName = %s
+                         , bio = %s
+                         , avatar = %s
+                        WHERE id = %s
+                        """,
+                        [
+                            user.username,
+                            user.firstName,
+                            user.lastName,
+                            user.bio,
+                            user.avatar,
+                            user_id
+                        ]
+                    )
                 data = user.dict()
-                return UserOut(id=id, **data)
+                return UserOut(id=user_id, **data)
+        except Exception as e:
+            return {'message': "could not update user"}
+
+    def delete_user(self, user_id) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        DELETE FROM users
+                        WHERE id = %s
+                        """,
+                        [user_id],
+                    )
+        except Exception as e:
+            print(e)
+            return False
