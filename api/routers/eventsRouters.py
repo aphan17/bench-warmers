@@ -1,6 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
-from queries.eventsQueries import EventQueries, EventsOut, EventsListOut, EventsIn
+from queries.eventsQueries import (
+    EventQueries,
+    EventsOut,
+    EventsIn,
+    EventsListOut,
+)
+from psycopg.errors import ForeignKeyViolation
+
+# # from queries.eventsQueries import EventQueries, EventsOut, EventsListOut,EventIn
 from psycopg.errors import ForeignKeyViolation
 
 router = APIRouter()
@@ -18,16 +26,16 @@ def get_event(
 ):
     record = queries.get_event(event_id)
     if record is None:
-        raise HTTPException(status_code=404, detail="No events found with id {}".format(event_id))
+        raise HTTPException(
+            status_code=404,
+            detail="No events found with id {}".format(event_id),
+        )
     else:
         return record
 
 
 @router.delete("/api/events/{event_id}", response_model=bool)
-def delete_event(
-    event_id: int,
-    queries: EventQueries = Depends()
-):
+def delete_event(event_id: int, queries: EventQueries = Depends()):
     print(queries)
     queries.delete_event(event_id)
     return True

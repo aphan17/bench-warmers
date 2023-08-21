@@ -19,6 +19,10 @@ class Error(BaseModel):
     message: str
 
 
+class Error(BaseModel):
+    message: str
+
+
 class UserIn(BaseModel):
     username: str
     firstName: str
@@ -101,3 +105,18 @@ class UserQueries:
                 id = result.fetchone()[0]
                 data = user.dict()
                 return UserOut(id=id, **data)
+
+    def delete_user(self, user_id) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        DELETE FROM users
+                        WHERE id = %s
+                        """,
+                        [user_id],
+                    )
+        except Exception as e:
+            print(e)
+            return False

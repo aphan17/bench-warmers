@@ -43,3 +43,12 @@ def get_all_users(
 @router.post("/api/users", response_model=UserOut)
 def create_user(user: UserIn, queries: UserQueries = Depends()):
     return queries.create_user(user)
+
+
+@router.delete("/api/user/{user_id}", response_model=bool)
+def delete_user(
+    user_id: int,
+    queries: UserQueries = Depends(),
+):
+    queries.delete_user(user_id)
+    return True
