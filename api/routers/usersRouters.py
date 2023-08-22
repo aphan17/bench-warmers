@@ -1,5 +1,14 @@
 from queries.usersQueries import UserIn, UserQueries, UserOut
-from fastapi import APIRouter, Depends, Response, HTTPException
+from fastapi import (
+    Depends,
+    HTTPException,
+    status,
+    Response,
+    APIRouter,
+    Request,
+)
+
+from authenticator import authenticator
 from typing import Optional, List, Union
 
 # from pydantic import BaseModel
@@ -8,6 +17,9 @@ from queries.usersQueries import (
     UserIn,
     UserOut,
     UserQueries,
+    DuplicateUserNameError,
+    HttpError,
+    UserToken,
 )
 
 router = APIRouter()
@@ -27,12 +39,6 @@ def get_one_user(
         return record
 
 
-# @router.get("/api/coolreturn")
-# def cool_function():
-#     # pass
-#     return "Cool text works"
-
-
 @router.get("/api/users", response_model=Union[List[UserOut], Error])
 def get_all_users(
     queries: UserQueries = Depends(),
@@ -45,13 +51,13 @@ def get_all_users(
 def create_user(user: UserIn, queries: UserQueries = Depends()):
     return queries.create_user(user)
 
+
 @router.put("/api/users/{user_id}", response_model=Union[UserOut, Error])
 def update_user(
-    user_id: int,
-    user: UserIn,
-    queries: UserQueries = Depends()
+    user_id: int, user: UserIn, queries: UserQueries = Depends()
 ) -> Union[Error, UserOut]:
     return queries.update_user(user_id, user)
+
 
 @router.delete("/api/user/{user_id}", response_model=bool)
 def delete_user(
@@ -60,3 +66,31 @@ def delete_user(
 ):
     queries.delete_user(user_id)
     return True
+
+
+@router.post("/api/accounts", response_model=UserToken | HttpError)
+async def create_account(
+    info: UserIn,
+    request: Request,
+    response: Response,
+    repo: UserQueries = Depends(),
+):
+    hashed_password = authenticator.hash_password(info.password)
+    try:
+        account = repo.create_user(info, hashed_password)
+    except DuplicateUserNameError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot create an account with those credentials",
+        )
+    form = UserIn(
+        username=info.email,
+        password=info.password,
+        email=info.email,
+        firstName=info.firstName,
+        lastName=info.lastName,
+        bio=info.bio,
+        avatar=info.avatar,
+    )
+    token = await authenticator.login(response, request, form, repo)
+    return UserToken(user=account, **token.dict())
