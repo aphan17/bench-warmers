@@ -8,15 +8,16 @@ from queries.eventsQueries import (
 )
 from psycopg.errors import ForeignKeyViolation
 
-# # from queries.eventsQueries import EventQueries, EventsOut, EventsListOut,EventIn
-from psycopg.errors import ForeignKeyViolation
 
 router = APIRouter()
 
 
 @router.get("/api/events", response_model=EventsListOut)
 def get_events(queries: EventQueries = Depends()):
-    return {"events": queries.get_all_events()}
+    if len(queries.get_all_events()) == 0:
+        raise HTTPException(status_code=404, detail="No events found")
+    else:
+        return {"events": queries.get_all_events()}
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
@@ -37,8 +38,10 @@ def get_event(
 @router.delete("/api/events/{event_id}", response_model=bool)
 def delete_event(event_id: int, queries: EventQueries = Depends()):
     print(queries)
-    queries.delete_event(event_id)
-    return True
+    if queries.delete_event(event_id):
+        return True
+    else:
+        return False
 
 
 @router.post("/api/events", response_model=EventsIn)
