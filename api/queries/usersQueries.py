@@ -22,10 +22,6 @@ class UserListOut(BaseModel):
     users: list[UserOut]
 
 
-class UserListOut(BaseModel):
-    users: list[UserOut]
-
-
 class UserOutWithPassword(UserOut):
     password: str
 
