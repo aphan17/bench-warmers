@@ -77,7 +77,7 @@ class UserQueries:
                     result.append(user)
                 return result
 
-    def get_one_user(self, email) -> UserOutWithPassword:
+    def get_one_user(self, username) -> UserOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -91,9 +91,9 @@ class UserQueries:
                         bio,
                         password
                     FROM users
-                    WHERE email = %s
+                    WHERE username = %s
                     """,
-                    [email],
+                    [username],
                 )
                 record = cur.fetchone()
                 if record:
@@ -114,40 +114,37 @@ class UserQueries:
     def create_user(
         self, user: UserIn, hashed_password: str
     ) -> UserOutWithPassword:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as cur:
-                    print(type(user.username))
-                    result = cur.execute(
-                        """
-                        INSERT INTO users (
-                            username,
-                            email,
-                            password,
-                            firstName,
-                            lastName,
-                            bio,
-                            avatar)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s)
-                        RETURNING id;
-                        """,
-                        [
-                            user.username,
-                            user.email,
-                            hashed_password,
-                            user.firstName,
-                            user.lastName,
-                            user.bio,
-                            user.avatar,
-                        ],
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                print(type(user.username))
+                result = cur.execute(
+                    """
+                    INSERT INTO users (
+                        username,
+                        email,
+                        password,
+                        firstName,
+                        lastName,
+                        bio,
+                        avatar)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    RETURNING id;
+                    """,
+                    [
+                        user.username,
+                        user.email,
+                        hashed_password,
+                        user.firstName,
+                        user.lastName,
+                        user.bio,
+                        user.avatar,
+                    ],
+                )
+                id = result.fetchone()[0]
+                data = user.dict()
+                return UserOutWithPassword(
+                    id=id, **data, hashedPassword=hashed_password
                     )
-                    id = result.fetchone()[0]
-                    data = user.dict()
-                    return UserOutWithPassword(
-                        id=id, **data, hashedPassword=hashed_password
-                    )
-        except Exception as e:
-            return {"message": "could not create user"}
 
     def update_user(self, user_id: int, user: UserIn) -> Union[UserOut, Error]:
         try:
