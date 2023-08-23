@@ -47,11 +47,6 @@ def get_all_users(
     return queries.get_all_users()
 
 
-@router.post("/api/users", response_model=UserOut)
-def create_user(user: UserIn, queries: UserQueries = Depends()):
-    return queries.create_user(user)
-
-
 @router.put("/api/users/{user_id}", response_model=Union[UserOut, Error])
 def update_user(
     user_id: int, user: UserIn, queries: UserQueries = Depends()
@@ -68,7 +63,7 @@ def delete_user(
     return True
 
 
-@router.post("/api/accounts", response_model=UserToken | HttpError)
+@router.post("/api/users", response_model=UserToken | HttpError)
 async def create_account(
     info: UserIn,
     request: Request,
@@ -84,7 +79,7 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = UserIn(
-        username=info.email,
+        username=info.username,
         password=info.password,
         email=info.email,
         firstName=info.firstName,
