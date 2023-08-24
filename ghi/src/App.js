@@ -3,6 +3,9 @@ import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
 import "./App.css";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginForm from "./LoginForm.js";
+
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
@@ -28,8 +31,13 @@ function App() {
 
   return (
     <div>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginForm/>}></Route>
+      </Routes>
       <ErrorNotification error={error} />
       <Construct info={launchInfo} />
+      </BrowserRouter>
     </div>
   );
 }
