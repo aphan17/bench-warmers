@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from "./Nav.js";
 import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
-import userProfilePage from "./ProfilePage.js";
+import UserProfilePage from "./UserProfilePage.js";
 import "./App.css";
 
 function App() {
@@ -32,14 +32,18 @@ function App() {
   return (
     <div>
         <BrowserRouter>
-          <Nav>
+          <Nav />
+            <div className="container">
             <Routes>
-              <Route path="/profile" element={<userProfilePage />}></Route>
+              <Route path="/" element={<Construct info={launchInfo} />} />
+              <Route path="profile/">
+                <Route path="page" element={<UserProfilePage />} />
+              </Route>
             </Routes>
-          </Nav>
+            </div>
         </BrowserRouter>
-        <ErrorNotification error={error} />
-        <Construct info={launchInfo} />
+        {/* <ErrorNotification error={error} />
+        <Construct info={launchInfo} /> */}
     </div>
   );
 }
