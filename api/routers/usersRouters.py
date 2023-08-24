@@ -28,9 +28,11 @@ router = APIRouter()
 @router.get("/api/user/{user_id}", response_model=Optional[UserOut])
 def get_one_user(
     user_id: int,
+    username: str,
     queries: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
-    record = queries.get_one_user(user_id)
+    record = queries.get_one_user(username)
     if record is None:
         raise HTTPException(
             status_code=404, detail="No user found with id {}".format(user_id)
@@ -42,22 +44,28 @@ def get_one_user(
 @router.get("/api/users", response_model=Union[List[UserOut], Error])
 def get_all_users(
     queries: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
-    # print({"users": queries.get_all_users()})
     return queries.get_all_users()
 
 
 @router.put("/api/users/{user_id}", response_model=Union[UserOut, Error])
 def update_user(
-    user_id: int, user: UserIn, queries: UserQueries = Depends()
+    user_id: int,
+    user: UserIn,
+    queries: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ) -> Union[Error, UserOut]:
-    return queries.update_user(user_id, user)
+    hashed_password = authenticator.hash_password(user.password)
+    updated = queries.update_user(user_id, user, hashed_password)
+    return updated
 
 
 @router.delete("/api/user/{user_id}", response_model=bool)
 def delete_user(
     user_id: int,
     queries: UserQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
     queries.delete_user(user_id)
     return True

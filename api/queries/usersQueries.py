@@ -146,7 +146,7 @@ class UserQueries:
                     id=id, **data, hashedPassword=hashed_password
                     )
 
-    def update_user(self, user_id: int, user: UserIn) -> Union[UserOut, Error]:
+    def update_user(self, user_id: int, user: UserIn, hashed_password: str) -> Union[UserOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -165,7 +165,7 @@ class UserQueries:
                         [
                             user.username,
                             user.email,
-                            user.password,
+                            hashed_password,
                             user.firstName,
                             user.lastName,
                             user.bio,
@@ -174,9 +174,9 @@ class UserQueries:
                         ],
                     )
                 data = user.dict()
-                return UserOut(id=user_id, **data)
+                return UserOutWithPassword(id=user_id, **data, hashedPassword=hashed_password)
         except Exception as e:
-            return {"message": "could not update user"}
+            return e
 
     def delete_user(self, user_id) -> bool:
         try:
