@@ -4,20 +4,13 @@ import { useState } from "react";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useToken();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(`username: ${username} password: ${password}`);
-    login(username, password);
-    e.target.reset();
-  };
 
   return (
     <div className="card text-bg-light mb-3">
       <h5 className="card-header">Login</h5>
       <div className="card-body">
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form>
           <div className="mb-3">
             <label className="form-label">Username:</label>
             <input
