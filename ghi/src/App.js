@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from "./Nav.js";
 import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
+import userProfilePage from "./ProfilePage.js";
 import "./App.css";
 
 function App() {
@@ -28,8 +31,15 @@ function App() {
 
   return (
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
+        <BrowserRouter>
+          <Nav>
+            <Routes>
+              <Route path="/profile" element={<userProfilePage />}></Route>
+            </Routes>
+          </Nav>
+        </BrowserRouter>
+        <ErrorNotification error={error} />
+        <Construct info={launchInfo} />
     </div>
   );
 }
