@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from "./Nav.js";
 import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
-import UserProfilePage from "./UserProfilePage.js";
+import UserProfilePage from "./ProfilePage.js";
 import "./App.css";
+import LoginForm from "./LoginForm.js";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -17,6 +19,7 @@ function App() {
       let response = await fetch(url);
       console.log("------- hello? -------");
       let data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         console.log("got launch data!");
@@ -31,19 +34,25 @@ function App() {
 
   return (
     <div>
-        <BrowserRouter>
-          <Nav />
-            <div className="container">
-            <Routes>
-              <Route path="/" element={<Construct info={launchInfo} />} />
-              <Route path="profile/">
-                <Route path="page" element={<UserProfilePage />} />
-              </Route>
-            </Routes>
-            </div>
-        </BrowserRouter>
-        {/* <ErrorNotification error={error} />
-        <Construct info={launchInfo} /> */}
+      <ErrorNotification error={error} />
+      <Construct info={launchInfo} />
+      <BrowserRouter>
+      <Nav />
+        <div className="container">
+        <AuthProvider baseUrl="http://localhost:8000">
+          <Routes>
+            <Route path="login" element={<LoginForm/>}></Route>
+
+            <Route path="/" element={<Construct info={launchInfo} />} />
+
+            <Route path="profile/">
+              <Route path="page" element={<UserProfilePage />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
+        </div>
+      </BrowserRouter>
+
     </div>
   );
 }
