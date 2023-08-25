@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
+
+
 from typing import Optional
 from queries.eventsQueries import (
     EventQueries,
@@ -7,6 +9,7 @@ from queries.eventsQueries import (
     EventsListOut,
 )
 from psycopg.errors import ForeignKeyViolation
+from authenticator import authenticator
 
 
 router = APIRouter()
@@ -21,10 +24,7 @@ def get_events(queries: EventQueries = Depends()):
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
-def get_event(
-    event_id: int,
-    queries: EventQueries = Depends(),
-):
+def get_event(event_id: int,queries: EventQueries = Depends(),):
     record = queries.get_event(event_id)
     if record is None:
         raise HTTPException(
@@ -36,7 +36,7 @@ def get_event(
 
 
 @router.delete("/api/events/{event_id}", response_model=bool)
-def delete_event(event_id: int, queries: EventQueries = Depends()):
+def delete_event(event_id: int, queries: EventQueries = Depends(authenticator.get_current_account_data)):
     print(queries)
     if queries.delete_event(event_id):
         return True
@@ -45,10 +45,7 @@ def delete_event(event_id: int, queries: EventQueries = Depends()):
 
 
 @router.post("/api/events", response_model=EventsIn)
-def create_event(
-    event: EventsIn,
-    queries: EventQueries = Depends(),
-):
+def create_event(event: EventsIn,queries: EventQueries = Depends(), account_data:dict = Depends(authenticator.get_current_account_data)):
     try:
         return queries.create_event(event)
     except ForeignKeyViolation as e:
@@ -59,7 +56,7 @@ def create_event(
 def update_event(
     event_id: int,
     event: EventsIn,
-    repo: EventQueries = Depends(),
+    repo: EventQueries = Depends(authenticator.get_current_account_data),
 ):
     try:
         return repo.update_event(event_id, event)
