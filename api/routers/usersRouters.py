@@ -25,9 +25,8 @@ from queries.usersQueries import (
 router = APIRouter()
 
 
-@router.get("/api/user/{user_id}", response_model=Optional[UserOut])
+@router.get("/api/user/{username}", response_model=Optional[UserOut])
 def get_one_user(
-    user_id: int,
     username: str,
     queries: UserQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data)
@@ -35,7 +34,7 @@ def get_one_user(
     record = queries.get_one_user(username)
     if record is None:
         raise HTTPException(
-            status_code=404, detail="No user found with id {}".format(user_id)
+            status_code=404, detail="No user found with username {}".format(username)
         )
     else:
         return record
