@@ -38,6 +38,7 @@ class EventQueries:
                     """
                     SELECT id, creator_id,name,start_date,end_date,description,num_of_attendees
                     FROM events
+                    ORDER BY id
 
                     """
                 )

@@ -16,7 +16,6 @@ function UserProfilePage() {
     if (token) {
       const url = `http://localhost:8000/api/accounts/`
       const result = await fetchWithToken(url);
-
       setUser(result);
     }
   }
@@ -43,5 +42,6 @@ function UserProfilePage() {
         </div>
       </div>
     );
+
 }
 export default UserProfilePage;

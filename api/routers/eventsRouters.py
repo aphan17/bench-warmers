@@ -24,7 +24,7 @@ def get_events(queries: EventQueries = Depends()):
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
-def get_event(event_id: int,queries: EventQueries = Depends(),):
+def get_event(event_id: int,queries: EventQueries = Depends()):
     record = queries.get_event(event_id)
     if record is None:
         raise HTTPException(
