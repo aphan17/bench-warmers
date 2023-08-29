@@ -7,35 +7,54 @@ import UserProfilePage from "./ProfilePage.js";
 import "./App.css";
 import LoginForm from "./LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
+
+
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
+  // const params = useParams();
+  const {token, fetchWithCookie, fetchWithToken} = useToken();
+  const [user, setUser] = useState({});
 
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
-      console.log("fastapi url: ", url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
+  const getUserData = async () => {
+    console.log(token);
+    if (token) {
+      const url = `http://localhost:8000/api/accounts/`
+      const result = await fetchWithToken(url);
+      setUser(result);
     }
-    getData();
-  }, []);
+  }
+  useEffect(() => {
+    getUserData();
+  }, [token]);
+
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
+  //     console.log("fastapi url: ", url);
+  //     let response = await fetch(url);
+  //     console.log("------- hello? -------");
+  //     let data = await response.json();
+  //     console.log(data);
+
+  //     if (response.ok) {
+  //       console.log("got launch data!");
+  //       setLaunchInfo(data.launch_details);
+  //     } else {
+  //       console.log("drat! something happened");
+  //       setError(data.message);
+  //     }
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
+      {/* <ErrorNotification error={error} />
+      <Construct info={launchInfo} /> */}
       <BrowserRouter>
       <Nav />
         <div className="container">
@@ -45,9 +64,8 @@ function App() {
 
             <Route path="/" element={<Construct info={launchInfo} />} />
 
-            <Route path="profile/">
-              <Route path="page" element={<UserProfilePage />} />
-            </Route>
+            <Route path="profile/page" element={<UserProfilePage user={user} />} />
+
           </Routes>
         </AuthProvider>
         </div>
