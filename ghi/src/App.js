@@ -5,6 +5,8 @@ import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
 import UserProfilePage from "./ProfilePage.js";
 import "./App.css";
+import SignUpForm from "./SignUp.jsx";
+
 import LoginForm from "./LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
@@ -19,7 +21,6 @@ function App() {
   //     let response = await fetch(url);
   //     console.log("------- hello? -------");
   //     let data = await response.json();
-  //     console.log(data);
 
   //     if (response.ok) {
   //       console.log("got launch data!");
@@ -48,6 +49,8 @@ function App() {
             <Route path="profile/">
               <Route path="page" element={<UserProfilePage />} />
             </Route>
+
+            <Route path="/create/users" element={<SignUpForm/>}/>
           </Routes>
         </AuthProvider>
         </div>
