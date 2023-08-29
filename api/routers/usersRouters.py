@@ -25,26 +25,27 @@ from queries.usersQueries import (
 router = APIRouter()
 
 
-@router.get("/api/user/{user_id}", response_model=Optional[UserOut])
+@router.get("/api/user/{username}", response_model=Optional[UserOut])
 def get_one_user(
-    user_id: int,
     username: str,
     queries: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    record = queries.get_one_user(username)
-    if record is None:
-        raise HTTPException(
-            status_code=404, detail="No user found with id {}".format(user_id)
-        )
-    else:
-        return record
+    return account_data
+    # record = queries.get_one_user(username)
+    # if record is None:
+    #     raise HTTPException(
+    #         status_code=404,
+    #         detail="No user found with username {}".format(username),
+    #     )
+    # else:
+    #     return record
 
 
 @router.get("/api/users", response_model=Union[List[UserOut], Error])
 def get_all_users(
     queries: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return queries.get_all_users()
 
@@ -54,7 +55,7 @@ def update_user(
     user_id: int,
     user: UserIn,
     queries: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> Union[Error, UserOut]:
     hashed_password = authenticator.hash_password(user.password)
     updated = queries.update_user(user_id, user, hashed_password)
@@ -65,7 +66,7 @@ def update_user(
 def delete_user(
     user_id: int,
     queries: UserQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     queries.delete_user(user_id)
     return True
@@ -74,14 +75,27 @@ def delete_user(
 @router.get("/token", response_model=UserToken | None)
 async def get_token(
     request: Request,
-    account: UserOut = Depends(authenticator.try_get_current_account_data)
-) -> UserToken| None:
+    account: UserOut = Depends(authenticator.try_get_current_account_data),
+) -> UserToken | None:
     if account and authenticator.cookie_name in request.cookies:
         return {
             "access_token": request.cookies[authenticator.cookie_name],
             "type": "Bearer",
             "user": account,
         }
+
+
+# @router.get("/token", response_model=UserToken | None)
+# async def get_token(
+#     request: Request,
+#     account: UserOut = Depends(authenticator.try_get_current_account_data)
+# ) -> UserToken| None:
+#     if account and authenticator.cookie_name in request.cookies:
+#         return {
+#             "access_token": request.cookies[authenticator.cookie_name],
+#             "type": "Bearer",
+#             "user": account,
+#         }
 
 
 @router.post("/api/users", response_model=UserToken | HttpError)
@@ -110,3 +124,11 @@ async def create_account(
     )
     token = await authenticator.login(response, request, form, repo)
     return UserToken(user=account, **token.dict())
+
+
+@router.get("/api/accounts")
+async def get_account(
+    account_data: dict
+    | None = Depends(authenticator.try_get_current_account_data),
+) -> UserOut | None:
+    return account_data
