@@ -23,7 +23,7 @@ function UserProfilePage() {
     return (
       <div className="mx-auto card border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded " style={{width: "45rem"}} >
         <img src={user.avatar}
-         alt="https://st.depositphotos.com/1742172/1357/v/950/depositphotos_13572851-stock-illustration-cartoon-dumbbell.jpg"
+         alt="Cannot display user avatar"
          className=" rounded mx-auto d-block" width="165" height="165"/>
          <div className="card-body">
          <ul className="list-group ">
@@ -33,7 +33,7 @@ function UserProfilePage() {
           <li className="list-group-item border bg-light">Bio: {user.bio}</li>
          </ul>
          </div>
-        <div className="d-grid gap-2 d-md-flex justify-content-betweeen">
+        <div className="d-grid gap-2 d-md-flex justify-content-between">
           <button className="btn btn-primary">Edit Profile</button>
           <button className="btn btn-danger">Logout</button>
         </div>

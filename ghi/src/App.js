@@ -7,29 +7,10 @@ import UserProfilePage from "./ProfilePage.js";
 import "./App.css";
 import LoginForm from "./LoginForm.js";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-
-
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
-  // const params = useParams();
-  const {token, fetchWithCookie, fetchWithToken} = useToken();
-  const [user, setUser] = useState({});
-
-  const getUserData = async () => {
-    console.log(token);
-    if (token) {
-      const url = `http://localhost:8000/api/accounts/`
-      const result = await fetchWithToken(url);
-      setUser(result);
-    }
-  }
-  useEffect(() => {
-    getUserData();
-  }, [token]);
-
 
   // useEffect(() => {
   //   async function getData() {
@@ -64,8 +45,9 @@ function App() {
 
             <Route path="/" element={<Construct info={launchInfo} />} />
 
-            <Route path="profile/page" element={<UserProfilePage user={user} />} />
-
+            <Route path="profile/">
+              <Route path="page" element={<UserProfilePage />} />
+            </Route>
           </Routes>
         </AuthProvider>
         </div>
