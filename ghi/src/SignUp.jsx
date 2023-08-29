@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+ 
 
 
 export default function SignUpForm() {
@@ -97,7 +98,7 @@ export default function SignUpForm() {
                   id="username"
                   className="form-control"
                 />
-                <label htmlFor="style">Username</label>
+                <label htmlFor="username">Username</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -110,7 +111,7 @@ export default function SignUpForm() {
                   id="first name"
                   className="form-control"
                 />
-                <label htmlFor="color">First Name</label>
+                <label htmlFor="firstname">First Name</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -123,7 +124,7 @@ export default function SignUpForm() {
                   id="last name"
                   className="form-control"
                 />
-                <label htmlFor="picture_url">Last Name</label>
+                <label htmlFor="lastname">Last Name</label>
               </div>
 
               <div className="form-floating mb-3">
@@ -145,12 +146,12 @@ export default function SignUpForm() {
                   onChange={handlePasswordChange}
                   placeholder="password"
                   required
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   className="form-control"
                 />
-                <label htmlFor="reason">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
               <div className="form-floating mb-3">
                 <input
