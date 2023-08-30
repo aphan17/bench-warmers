@@ -1,8 +1,8 @@
 volumes:
     postgres-data:
         external: true
-    pg-admin:
-      external: true
+    # pg-admin:
+    #   external: true
 services:
   postgres:
           image: postgres:14.5-bullseye
@@ -21,7 +21,7 @@ services:
       DATABASE_URL: postgresql://example_user:secret@postgres/example_db
       WAIT_HOSTS: postgres:5432
       PORT: 8000
-      WAIT_BEFORE: 10
+      WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
     build:
       context: api
@@ -46,13 +46,13 @@ services:
       PUBLIC_URL: http://localhost:3000
       REACT_APP_API_HOST: http://localhost:8000
 
-  pg-admin:
-    image: dpage/pgadmin4
-    volumes:
-      - pg-admin:/var/lib/pgadmin
-    ports:
-      - 8082:80
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "macd@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "password"
-      PGADMIN_DISABLE_POSTFIX: 1
+  # pg-admin:
+  #   image: dpage/pgadmin4
+  #   volumes:
+  #     - pg-admin:/var/lib/pgadmin
+  #   ports:
+  #     - 8082:80
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "macd@gmail.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "password"
+  #     PGADMIN_DISABLE_POSTFIX: 1
