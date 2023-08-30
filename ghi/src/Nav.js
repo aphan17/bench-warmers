@@ -13,6 +13,9 @@ return(
                     <li className="nav-item">
                         <NavLink className="nav-link" to="login">Log in</NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="users">Swipe</NavLink>
+                    </li>
                 </ul>
             </div>
         </div>

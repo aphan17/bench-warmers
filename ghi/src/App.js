@@ -10,6 +10,7 @@ import SignUpForm from "./SignUp.jsx";
 import LoginForm from "./LoginForm.js";
 import CardEvents from "./CardEvents.jsx";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import SwipingPageList from "./SwipingPage.js";
 
 
 
@@ -56,6 +57,8 @@ function App() {
             <Route path="/create/users" element={<SignUpForm/>}/>
 
             <Route path="card/events" element={<CardEvents />}></Route>
+
+            <Route path="users" element={<SwipingPageList/>}/>
           </Routes>
 
         </AuthProvider>
