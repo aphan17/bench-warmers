@@ -1,4 +1,3 @@
-from queries.usersQueries import UserIn, UserQueries, UserOut
 from fastapi import (
     Depends,
     HTTPException,
