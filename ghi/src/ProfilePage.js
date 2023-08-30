@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 function UserProfilePage() {
-    const params = useParams();
+    // const params = useParams();
     const {token, logout, fetchWithToken} = useToken();
     const [user, setUser] = useState({});
 
