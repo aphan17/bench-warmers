@@ -54,13 +54,14 @@ function App() {
             </Route>
 
             <Route path="/create/users" element={<SignUpForm/>}/>
-          
+
             <Route path="card/events" element={<CardEvents />}></Route>
           </Routes>
 
         </AuthProvider>
         </div>
       </BrowserRouter>
+
     </div>
   );
 }

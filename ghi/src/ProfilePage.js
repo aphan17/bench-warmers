@@ -4,15 +4,18 @@ import { useParams } from "react-router-dom";
 
 function UserProfilePage() {
     const params = useParams();
-    const {token, fetchWithCookie, fetchWithToken} = useToken();
+    const {token, logout, fetchWithToken} = useToken();
     const [user, setUser] = useState({});
+
+    const logUserOut = async () => {
+      logout();
+      setUser({});
+    }
 
     const getUserData = async () => {
     if (token) {
       const url = `http://localhost:8000/api/accounts/`
       const result = await fetchWithToken(url);
-
-
       setUser(result);
     }
   }
@@ -35,12 +38,10 @@ function UserProfilePage() {
          </div>
         <div className="d-grid gap-2 d-md-flex justify-content-between">
           <button className="btn btn-primary">Edit Profile</button>
-          <button className="btn btn-danger">Logout</button>
+          <button onClick={logUserOut} className="btn btn-danger">Logout</button>
         </div>
-        {/* <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      </div>
+    );
 
-        </div> */}
-        </div>
-    )
 }
 export default UserProfilePage;
