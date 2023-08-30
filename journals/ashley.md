@@ -1,3 +1,15 @@
+<!-- August 28, 2023 -->
+
+Today, I am still working on the get users frontend page.
+
+<!-- August 25, 2023 -->
+
+Today, I finished the login front end functionality and started the get users frontend page.
+
+<!-- August 23, 2023 -->
+
+Today, I protected all the user endpoints and updated the put method since errors were coming up.
+
 <!-- August 17,  2023 -->
 
 Today, I worked on the put/update endpoint for users. No ah-ha moments today.
