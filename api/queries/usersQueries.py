@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-from typing import List, Literal
+from typing import List
 from pydantic import BaseModel
 from typing import Union
 from jwtdown_fastapi.authentication import Token

@@ -24,7 +24,7 @@ def get_events(queries: EventQueries = Depends()):
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
-def get_event(event_id: int,queries: EventQueries = Depends()):
+def get_event(event_id: int, queries: EventQueries = Depends()):
     record = queries.get_event(event_id)
     if record is None:
         raise HTTPException(
@@ -45,10 +45,10 @@ def delete_event(event_id: int, queries: EventQueries = Depends(authenticator.ge
 
 
 @router.post("/api/events", response_model=EventsIn)
-def create_event(event: EventsIn,queries: EventQueries = Depends(), account_data:dict = Depends(authenticator.get_current_account_data)):
+def create_event(event: EventsIn, queries: EventQueries = Depends(), account_data: dict = Depends(authenticator.get_current_account_data)):
     try:
         return queries.create_event(event)
-    except ForeignKeyViolation as e:
+    except ForeignKeyViolation:
         raise HTTPException(status_code=400, detail="Failed to create event")
 
 
@@ -60,5 +60,5 @@ def update_event(
 ):
     try:
         return repo.update_event(event_id, event)
-    except ForeignKeyViolation as e:
+    except ForeignKeyViolation:
         raise HTTPException(status_code=400, detail="Failed to update event")
