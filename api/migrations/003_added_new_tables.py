@@ -3,7 +3,6 @@ steps = [
         """
         CREATE TABLE locations (
             id SERIAL PRIMARY KEY NOT NULL,
-            city TEXT NOT NULL,
             gym TEXT NOT NULL
         );
         """,
