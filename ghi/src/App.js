@@ -5,7 +5,7 @@ import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
 import UserProfilePage from "./ProfilePage.js";
 import "./App.css";
-
+import EventForm from "./EventForm.js";
 import SignUpForm from "./SignUp.jsx";
 import LoginForm from "./LoginForm.js";
 import CardEvents from "./CardEvents.jsx";
@@ -18,24 +18,7 @@ function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
-  //     console.log("fastapi url: ", url);
-  //     let response = await fetch(url);
-  //     console.log("------- hello? -------");
-  //     let data = await response.json();
 
-  //     if (response.ok) {
-  //       console.log("got launch data!");
-  //       setLaunchInfo(data.launch_details);
-  //     } else {
-  //       console.log("drat! something happened");
-  //       setError(data.message);
-  //     }
-  //   }
-  //   getData();
-  // }, []);
 
   return (
     <div>
@@ -56,11 +39,15 @@ function App() {
 
             <Route path="/create/users" element={<SignUpForm/>}/>
 
+
             <Route path="card/events" element={<CardEvents />}></Route>
 
             <Route path="users" element={<SwipingPageList/>}/>
-          </Routes>
 
+
+            <Route path="card/events" element={<CardEvents />}></Route>
+            <Route path="/create/event" element={<EventForm/>}></Route>
+          </Routes>
         </AuthProvider>
         </div>
       </BrowserRouter>

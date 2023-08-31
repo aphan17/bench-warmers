@@ -16,7 +16,9 @@ router = APIRouter()
 
 
 @router.get("/api/events", response_model=EventsListOut)
-def get_events(queries: EventQueries = Depends()):
+def get_events(queries: EventQueries = Depends(),
+               account_data: dict = Depends(authenticator.get_current_account_data)):
+
     if len(queries.get_all_events()) == 0:
         raise HTTPException(status_code=404, detail="No events found")
     else:
@@ -24,7 +26,9 @@ def get_events(queries: EventQueries = Depends()):
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
-def get_event(event_id: int, queries: EventQueries = Depends()):
+def get_event(event_id: int, queries: EventQueries = Depends(),
+              account_data: dict = Depends(authenticator.get_current_account_data)
+              ):
     record = queries.get_event(event_id)
     if record is None:
         raise HTTPException(
@@ -36,27 +40,34 @@ def get_event(event_id: int, queries: EventQueries = Depends()):
 
 
 @router.delete("/api/events/{event_id}", response_model=bool)
-def delete_event(event_id: int, queries: EventQueries = Depends(authenticator.get_current_account_data)):
-    print(queries)
-    if queries.delete_event(event_id):
+def delete_event(event_id: int, queries: EventQueries = Depends(),
+                 account_data: dict = Depends(authenticator.get_current_account_data)
+                 ):
+    try:
+        queries.delete_event(event_id)
         return True
-    else:
+    except Exception:
         return False
 
 
+
 @router.post("/api/events", response_model=EventsIn)
-def create_event(event: EventsIn, queries: EventQueries = Depends(), account_data: dict = Depends(authenticator.get_current_account_data)):
-    try:
-        return queries.create_event(event)
-    except ForeignKeyViolation:
-        raise HTTPException(status_code=400, detail="Failed to create event")
+def create_event(event: EventsIn, queries: EventQueries = Depends(),
+                 account_data: dict = Depends(authenticator.get_current_account_data)
+                 ):
+
+    if queries.create_event(event):
+        return True
+    else:
+        return False
 
 
 @router.put("/api/event/{event_id}", response_model=EventsOut)
 def update_event(
     event_id: int,
     event: EventsIn,
-    repo: EventQueries = Depends(authenticator.get_current_account_data),
+    repo: EventQueries = Depends(),
+        account_data: dict = Depends(authenticator.get_current_account_data)
 ):
     try:
         return repo.update_event(event_id, event)
