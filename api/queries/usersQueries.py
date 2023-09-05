@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from typing import Union
 from jwtdown_fastapi.authentication import Token
@@ -16,6 +16,7 @@ class UserOut(BaseModel):
     email: str
     bio: str
     avatar: str
+    location_id: Optional[int] = None
 
 
 class UserListOut(BaseModel):
@@ -38,6 +39,7 @@ class UserIn(BaseModel):
     password: str
     bio: str
     avatar: str
+    location_id: Optional[int]= None
 
 
 class UserToken(Token):
@@ -58,7 +60,7 @@ class UserQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, username, email, firstName, lastName, bio, avatar
+                    SELECT id, username, email, firstName, lastName, bio, avatar, location_id
                     FROM users
                     ORDER BY firstName, lastName
                     """
@@ -73,6 +75,7 @@ class UserQueries:
                         lastName=record[4],
                         bio=record[5],
                         avatar=record[6],
+                        location_id=record[7],
                     )
                     result.append(user)
                 return result
@@ -89,7 +92,8 @@ class UserQueries:
                         email,
                         avatar,
                         bio,
-                        password
+                        password,
+                        location_id
                     FROM users
                     WHERE username = %s
                     """,
@@ -106,6 +110,7 @@ class UserQueries:
                         avatar=record[5],
                         bio=record[6],
                         password=record[7],
+                        location_id=record[8],
                     )
                     return user
                 else:
@@ -126,8 +131,9 @@ class UserQueries:
                         firstName,
                         lastName,
                         bio,
-                        avatar)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                        avatar,
+                        location_id)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
@@ -138,6 +144,7 @@ class UserQueries:
                         user.lastName,
                         user.bio,
                         user.avatar,
+                        user.location_id
                     ],
                 )
                 id = result.fetchone()[0]
@@ -146,7 +153,7 @@ class UserQueries:
                     id=id, **data, hashedPassword=hashed_password
                     )
 
-    def update_user(self, user_id: int, user: UserIn, hashed_password: str) -> Union[UserOut, Error]:
+    def update_user(self, user_id: int, user: UserIn, hashed_password: str) -> UserOutWithPassword:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -160,6 +167,7 @@ class UserQueries:
                          , lastName = %s
                          , bio = %s
                          , avatar = %s
+                         , location_id = %s
                         WHERE id = %s
                         """,
                         [
@@ -170,6 +178,7 @@ class UserQueries:
                             user.lastName,
                             user.bio,
                             user.avatar,
+                            user.location_id,
                             user_id,
                         ],
                     )
@@ -204,7 +213,8 @@ class UserQueries:
                         username,
                         email,
                         avatar,
-                        bio
+                        bio,
+                        location_id
                     FROM users
                     WHERE email = %s
                     """,
@@ -220,6 +230,7 @@ class UserQueries:
                         email=record[4],
                         avatar=record[5],
                         bio=record[6],
+                        location_id=record[7]
                     )
                     return user
                 else:
