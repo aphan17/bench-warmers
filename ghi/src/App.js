@@ -22,7 +22,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className="Whole-page">
       {/* <ErrorNotification error={error} />
       <Construct info={launchInfo} /> */}
       <BrowserRouter>
