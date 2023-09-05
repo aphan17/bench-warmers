@@ -11,6 +11,7 @@ import LoginForm from "./LoginForm.js";
 import CardEvents from "./CardEvents.jsx";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import SwipingPageList from "./SwipingPage.js";
+import BookMarkedEvents from "./BookMarkedEvents.js";
 
 
 
@@ -47,6 +48,7 @@ function App() {
 
             <Route path="card/events" element={<CardEvents />}></Route>
             <Route path="/create/event" element={<EventForm/>}></Route>
+            <Route path="/list/bookmarkedevents" element={<BookMarkedEvents/>}></Route>
           </Routes>
         </AuthProvider>
         </div>

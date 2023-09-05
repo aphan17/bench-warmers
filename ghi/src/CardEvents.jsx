@@ -1,16 +1,13 @@
 import { useState ,useEffect} from "react";
 import './EventCard.css';
-import Modal from './Modal'
 import useToken from '@galvanize-inc/jwtdown-for-react';
 
 
 const EventCard =({data,loadEvents})=>{
-  const [toggleModal, setToggleModal] = useState(false);
   const {token, fetchWithCookie, fetchWithToken} = useToken();
-  function handleToggleModal(){
-    setToggleModal(!toggleModal)
 
-  }
+
+
   async function UpdateNumAttendees(event_id) {
     if (token) {
     const url = `http://localhost:8000/api/event/${event_id}`;
@@ -108,7 +105,6 @@ const EventCard =({data,loadEvents})=>{
         </div>
 
       </div>
-      {toggleModal && <Modal handleToggleModal={handleToggleModal} event={data} ></Modal>}
    </> );
 }
 
