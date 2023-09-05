@@ -45,7 +45,7 @@ steps = [
     [
         """
         CREATE TABLE favorites (
-            id INT primary key,
+            id SERIAL primary key,
             user_id INT,
             favorite_id INT,
             FOREIGN KEY (user_id) REFERENCES Users(id),

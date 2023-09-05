@@ -6,6 +6,7 @@ from routers import (
     usersRouters,
     attendeesRouters,
     locationRouters,
+    favoritesRouters,
 )
 from authenticator import authenticator
 
@@ -13,6 +14,7 @@ app = FastAPI()
 
 app.include_router(eventsRouters.router)
 app.include_router(usersRouters.router)
+app.include_router(favoritesRouters.router)
 app.include_router(authenticator.router)
 app.include_router(locationRouters.router)
 

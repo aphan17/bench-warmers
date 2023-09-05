@@ -7,7 +7,7 @@ client = TestClient(app)
 class EmptyEventQueries:
     def get_all_events(self):
         return []
-        
+
 class CreateEventQueries:
     def create_event(self,event):
         result = {
@@ -18,13 +18,13 @@ class CreateEventQueries:
   "description": "string",
   "num_of_attendees": 2
 }
-        
+
 
 def test_get_all_events():
 
     app.dependency_overrides[EventQueries] = EmptyEventQueries
     #Arrange
-    
+
     #Act
     response = client.get('/api/events')
 
@@ -55,15 +55,13 @@ def test_create_event():
   "description": "string",
   "num_of_attendees": 2
 }
-    
-    
+
+
     #Act
     response= client.post('/api/events',json=json)
-    
+
     app.dependency_overrides ={}
 
     #Assert
     assert response.status_code == 401
     assert json == expected
-    
-    
