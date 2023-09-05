@@ -11,3 +11,16 @@ Finished event endpoints and workingin localhost:8000
 ### 8/21/2023 ###
 finished error handling
 working on auth
+
+### 8/22/2023 ###
+worked on back end auth
+
+### 8/23/2023 ###
+finished on back end auth
+
+### 8/24/2023 ###
+started creating event form front end
+
+### 8/30/2023 ###
+worked on adding new tablers and columns to ur tables
+updated back end end points to wokr with updated tables and fixed back end auth

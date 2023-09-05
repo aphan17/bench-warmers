@@ -1,49 +1,17 @@
 import { useState ,useEffect} from "react";
 import './EventCard.css';
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import useToken from '@galvanize-inc/jwtdown-for-react';
 
-const EventCard =({data,loadEvents})=>{
-  const { token } = useAuthContext();
 
-  // create function for making an rsvp
-  // fetch all current users in the rsvp
-  
-  async function UpdateNumAttendees(event_id) {
-    const fetchConfig = {
-      method: "GET",
-      headers: {
-        Authenication: `Bearer ${token}`,
-      },
-      credentials: "include",
-    };
-    const url = `http://localhost:8000/api/event/${event_id}`;
+const EventCard =({data,loadAttendees})=>{
+const {token,  fetchWithToken} = useToken();
+  async function removeRsvp(attendee_id) {
 
-    const GetResponse = await fetch(url,fetchConfig);
-    let eventData ={}
-    if(GetResponse.ok){
-      eventData = await GetResponse.json()
-    };
+    const url = `http://localhost:8000/api/attendees/${attendee_id}`;
+    const response = await fetchWithToken(url, 'DELETE');
 
-    const fetchOptions = {
-      method: "PUT",
-      body: JSON.stringify({
-        creator_id: eventData.creator_id,
-        name: eventData.name,
-        start_date: eventData.start_date,
-        end_date: eventData.end_date,
-        description: eventData.description,
-        num_of_attendees: eventData.num_of_attendees + 1,
-      }),
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    };
+    loadAttendees()}
 
-    const response = await fetch(url, fetchOptions);
-
-    if (response.ok) {
-      loadEvents();
-    }
-  }
     return (
       <>
       <div className="card">
@@ -59,14 +27,15 @@ const EventCard =({data,loadEvents})=>{
         </svg>
         <div className="card_body">
           <h5>{data.name}</h5>
-
           <p className="card-text">{data.description}</p>
-
+          <p className="card-text">Location:{data.location_id}</p>
           <p className="card-text">Attending:{data.num_of_attendees}</p>
+          <p className="card-text">Start:{new Date(data.start_date).toLocaleString()}</p>
+          <p className="card-text">End:{new Date(data.end_date).toLocaleString()}</p>
         </div>
         <div className="card-footer ">
           <button
-            onClick={() => UpdateNumAttendees(data.id)}
+            onClick={() => removeRsvp(data.event_id)}
             className="btn btn-success"
           >
             <svg
@@ -93,38 +62,35 @@ const EventCard =({data,loadEvents})=>{
             </svg>
           </button>
         </div>
-
       </div>
    </> );
-}
+  }
 
-export default function CardEvents() {
-    const [events,setEvents] = useState([]);
-    
-    
-
-    async function loadEvents() {
-     
-      const response = await fetch("http://localhost:8000/api/events/");
+export default function BookMarkedEvents() {
+    const [attendees,setAttendees] = useState([])
+    const {token,  fetchWithToken} = useToken();
 
 
-      if (response.ok) {
-        const data = await response.json();
-        setEvents(data.events);
-      }
+
+    async function loadAttendees() {
+
+      const data = await fetchWithToken("http://localhost:8000/api/my/rsvps");
+      console.log(data)
+        setAttendees(data.attendees);
     }
 
+
+
     useEffect(() => {
-      
-        loadEvents();
-    
-      }, []);
+    if (token){
+      loadAttendees();}
+    }, [token]);
 
     return (
       <div className="Event">
         <div className ="card-container" >
-          {events.map((event) => (
-            <EventCard loadEvents ={loadEvents} data={event} key={event.id} />
+          {attendees.map((attendee) => (
+            <EventCard loadAttendees ={loadAttendees} data={attendee} key={attendee.user_id+attendee.event_id} />
           ))}
         </div>
       </div>

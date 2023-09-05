@@ -23,8 +23,8 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             creator_id integer NOT NULL REFERENCES users(id),
             name VARCHAR(50) NOT NULL,
-            start_date DATE  NOT NULL,
-            end_date DATE NOT NULL,
+            start_date TIMESTAMP NOT NULL,
+            end_date TIMESTAMP NOT NULL,
             description TEXT NOT NULL,
             num_of_attendees INTEGER DEFAULT 1
         );
@@ -33,5 +33,5 @@ steps = [
         """
         DROP TABLE events;
         """,
-    ],
+    ]
 ]
