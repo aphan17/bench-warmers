@@ -30,11 +30,11 @@ const SwipingPageList = () => {
 
 
     const getCurrentUser = async () => {
-    if (token) {
-      const url = `http://localhost:8000/api/accounts/`
-      const currentUser = await fetchWithToken(url);
-      setCurrentUser(currentUser);
-    }
+        if (token) {
+            const url = `http://localhost:8000/api/accounts/`
+            const currentUser = await fetchWithToken(url);
+            setCurrentUser(currentUser)
+        }
     }
     useEffect(() => {
         getCurrentUser();
@@ -52,12 +52,11 @@ const SwipingPageList = () => {
         };
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            const data = await response.json();
+            const favoritedUsers = await response.json();
+            setFavoritedUsers(favoritedUsers);
+            console.log(favoritedUsers);
         }
     }
-
-
-
 
 
     return (
@@ -72,7 +71,11 @@ const SwipingPageList = () => {
                                 <h5 className="card-title">Name: {user.firstName} {user.lastName}</h5>
                                 <p className="card-subtitle mb-2 text-muted">Preferred Gym Location</p>
                                 <p className="card-text">Bio: {user.bio}</p>
-                                <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning">Favorite</button>
+                                <div>
+                                    {/* <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning" disabled>Favorited</button> */}
+                                    <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning">Favorite</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
