@@ -93,7 +93,7 @@ function EventForm() {
               <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required type="text" name="description" id="description" className="form-control" />
               <label htmlFor="lastName">Description</label>
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <select value={location} onChange={handleChangeLocation} required name="location_id" id="location_id" className="form-select">
                 <option value="">Choose a gym</option>
                 {locations.map(location => {
@@ -102,7 +102,7 @@ function EventForm() {
                   )
                 })}
               </select>
-            </div>
+            </div> */}
             <div className="form-floating mb-3">
               <input value={stateDate} onChange={(e) => setStartDate(e.target.value)} placeholder="State Date" required type="datetime-local" name="start_date" id="start_date" className="form-control" />
               <label htmlFor="phone_number">State Date</label>

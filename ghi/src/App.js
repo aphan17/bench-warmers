@@ -27,6 +27,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/login" element={<LoginForm/>}></Route>
+            <Route path="/login" element={<LoginForm/>}></Route>
 
             <Route path="/" element={<Construct info={launchInfo} />} />
 
@@ -39,9 +40,13 @@ function App() {
 
 
             {/* <Route path="card/events" element={<CardEvents />}></Route> */}
+            {/* <Route path="card/events" element={<CardEvents />}></Route> */}
 
             <Route path="users" element={<SwipingPageList/>}/>
             {/* <Route path="/card/events" element={<CardEvents />}></Route> */}
+
+            {/* <Route path="/users" element={<SwipingPageList/>}/> */}
+            <Route path="/card/events" element={<CardEvents />}></Route>
 
             {/* <Route path="/users" element={<SwipingPageList/>}/> */}
 
