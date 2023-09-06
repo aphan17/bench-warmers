@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import EditProfile from "./EditProfile";
 
 function UserProfilePage() {
-    // const params = useParams();
     const {token, logout, fetchWithToken} = useToken();
     const [user, setUser] = useState({});
     const [location, setLocation] = useState({})
@@ -21,24 +20,6 @@ function UserProfilePage() {
       setModalOpen(!modalOpen);
     };
 
-    const getLocationName = async () => {
-      if (user.location_id) {
-        const locationId = (user.location_id).toString();
-        const response = await fetch(`http://localhost:8000/api/location/${locationId}/`)
-
-        if (response.ok){
-          const location = await response.json();
-          setLocation(location);
-        } else {
-          console.log("There was an issue getting that locations")
-        }
-      }
-    }
-
-    const updateUserData = async () => {
-      console.log("UpdateUserData called")
-      await getUserData();
-    }
 
     const getUserData = async () => {
     if (token) {
@@ -49,15 +30,8 @@ function UserProfilePage() {
   };
   useEffect(() => {
     getUserData();
-    getLocationName();
   }, [token]);
 
-
-  let userExists = false;
-  while (!userExists && !location.id){
-    getLocationName();
-    userExists = true;
-  }
 
     return (
       <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded " style={{width: "45rem"}} >
@@ -70,7 +44,7 @@ function UserProfilePage() {
           <li className="list-group-item border bg-light">Full Name: {user.firstName} {user.lastName}</li>
           <li className="list-group-item border bg-light">Email: {user.email}</li>
           <li className="list-group-item border bg-light">Bio: {user.bio}</li>
-          <li className="list-group-item border bg-light">Location: {location.gym}</li>
+          <li className="list-group-item border bg-light">Location: {user.location_gym}</li>
          </ul>
          </div>
         <div className="d-grid gap-2 d-md-flex justify-content-between">

@@ -73,7 +73,7 @@ function EditProfile(props) {
     data.bio = bio;
     data.avatar = avatar;
     data.password = password;
-    data.location_id = location;
+    data.location_gym = location;
 
     const updateUrl = `http://localhost:8000/api/users/${data.id}`;
     const fetchConfig = {
@@ -131,7 +131,7 @@ function EditProfile(props) {
       <option value="">Choose a location</option>
             {allLocations.map(location => {
             return (
-            <option key={location.id} value={location.id}> {location.gym} </option>
+            <option key={location.gym} value={location.gym}> {location.gym} </option>
             );
             })};
       </select>
