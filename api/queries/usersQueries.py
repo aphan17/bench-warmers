@@ -16,7 +16,7 @@ class UserOut(BaseModel):
     email: str
     bio: str
     avatar: str
-    location_id: Optional[int] = None
+    location_gym: Optional[str] = None
 
 
 class UserListOut(BaseModel):
@@ -39,7 +39,7 @@ class UserIn(BaseModel):
     password: str
     bio: str
     avatar: str
-    location_id: Optional[int]= None
+    location_gym: Optional[str]= None
 
 
 class UserToken(Token):
@@ -60,7 +60,7 @@ class UserQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, username, email, firstName, lastName, bio, avatar, location_id
+                    SELECT id, username, email, firstName, lastName, bio, avatar, location_gym
                     FROM users
                     ORDER BY firstName, lastName
                     """
@@ -75,7 +75,7 @@ class UserQueries:
                         lastName=record[4],
                         bio=record[5],
                         avatar=record[6],
-                        location_id=record[7],
+                        location_gym=record[7],
                     )
                     result.append(user)
                 return result
@@ -93,7 +93,7 @@ class UserQueries:
                         avatar,
                         bio,
                         password,
-                        location_id
+                        location_gym
                     FROM users
                     WHERE username = %s
                     """,
@@ -110,7 +110,7 @@ class UserQueries:
                         avatar=record[5],
                         bio=record[6],
                         password=record[7],
-                        location_id=record[8],
+                        location_gym=record[8],
                     )
                     return user
                 else:
@@ -132,7 +132,7 @@ class UserQueries:
                         lastName,
                         bio,
                         avatar,
-                        location_id)
+                        location_gym)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
@@ -144,7 +144,7 @@ class UserQueries:
                         user.lastName,
                         user.bio,
                         user.avatar,
-                        user.location_id
+                        user.location_gym
                     ],
                 )
                 id = result.fetchone()[0]
@@ -167,7 +167,7 @@ class UserQueries:
                          , lastName = %s
                          , bio = %s
                          , avatar = %s
-                         , location_id = %s
+                         , location_gym = %s
                         WHERE id = %s
                         """,
                         [
@@ -178,7 +178,7 @@ class UserQueries:
                             user.lastName,
                             user.bio,
                             user.avatar,
-                            user.location_id,
+                            user.location_gym,
                             user_id,
                         ],
                     )
@@ -214,7 +214,7 @@ class UserQueries:
                         email,
                         avatar,
                         bio,
-                        location_id
+                        location_gym
                     FROM users
                     WHERE email = %s
                     """,
@@ -230,7 +230,7 @@ class UserQueries:
                         email=record[4],
                         avatar=record[5],
                         bio=record[6],
-                        location_id=record[7]
+                        location_gym=record[7]
                     )
                     return user
                 else:

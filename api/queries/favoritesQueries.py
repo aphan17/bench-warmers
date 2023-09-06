@@ -2,6 +2,7 @@ import os
 from psycopg_pool import ConnectionPool
 from typing import List
 from pydantic import BaseModel
+from fastapi import HTTPException
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
@@ -31,22 +32,36 @@ class FavoriteQueries:
             with conn.cursor() as cur:
                 cur.execute (
                     """
-                    INSERT INTO favorites (
-                        user_id,
-                        favorite_id
-                    )
-                    VALUES (%s, %s)
-                    RETURNING id
+                    SELECT id FROM favorites
+                    WHERE user_id = %s AND favorite_id = %s
                     """,
                     [
                         favorite.user_id,
                         favorite.favorite_id,
-
-                    ],
+                    ]
                 )
-                id = cur.fetchone()[0]
-                data = favorite.dict()
-                return FavoriteOut(id=id, **data)
+                already_exists = cur.fetchone()
+                if already_exists:
+                    raise HTTPException(status_code=400, detail="Favorited pair already exists")
+                else:
+                    cur.execute(
+                        """
+                        INSERT INTO favorites (
+                            user_id,
+                            favorite_id
+                        )
+                        VALUES (%s, %s)
+                        RETURNING id
+                        """,
+                        [
+                            favorite.user_id,
+                            favorite.favorite_id,
+
+                        ],
+                    )
+                    id = cur.fetchone()[0]
+                    data = favorite.dict()
+                    return FavoriteOut(id=id, **data)
 
     # get a user's favorites
     def get_user_favorites(self, user_id):

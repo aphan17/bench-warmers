@@ -10,7 +10,6 @@ import EventForm from "./EventForm.js";
 import SignUpForm from "./SignUp.jsx";
 import LoginForm from "./LoginForm.js";
 import CardEvents from "./CardEvents.jsx";
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import SwipingPageList from "./SwipingPage.js";
 import BookMarkedEvents from "./BookMarkedEvents.js";
 
@@ -26,7 +25,6 @@ function App() {
       <BrowserRouter>
       <Nav />
         <div className="container">
-        <AuthProvider baseUrl="http://localhost:8000">
           <Routes>
             <Route path="/login" element={<LoginForm/>}></Route>
 
@@ -52,7 +50,6 @@ function App() {
             <Route path="/create/event" element={<EventForm/>}></Route>
             <Route path="/list/bookmarkedevents" element={<BookMarkedEvents/>}></Route>
           </Routes>
-        </AuthProvider>
         </div>
       </BrowserRouter>
 
