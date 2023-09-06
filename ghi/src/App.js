@@ -34,7 +34,7 @@ function App() {
 
             <Route path="/profile/">
               <Route path="page" element={<UserProfilePage />} />
-              <Route path="edit" element={<EditProfile />} />
+              {/* <Route path="edit" element={<EditProfile />} /> */}
             </Route>
 
             <Route path="/create/users" element={<SignUpForm/>}/>
