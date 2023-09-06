@@ -3,7 +3,7 @@ steps = [
         """
         CREATE TABLE locations (
             id SERIAL PRIMARY KEY NOT NULL,
-            gym TEXT NOT NULL
+            gym TEXT UNIQUE NOT NULL
         );
         """,
         """
@@ -13,8 +13,8 @@ steps = [
     [
         """
         ALTER TABLE users
-        ADD location_id int NULL,
-        ADD FOREIGN KEY (location_id) REFERENCES locations(id)
+        ADD location_gym TEXT NULL,
+        ADD FOREIGN KEY (location_gym) REFERENCES locations(gym)
         """,
         """
         DROP TABLE users;

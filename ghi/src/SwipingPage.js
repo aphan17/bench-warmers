@@ -69,7 +69,7 @@ const SwipingPageList = () => {
                             <img src={user.avatar} className="card-img-top" alt="avatar pic"></img>
                             <div className="card-body">
                                 <h5 className="card-title">Name: {user.firstName} {user.lastName}</h5>
-                                <p className="card-subtitle mb-2 text-muted">Preferred Gym Location</p>
+                                <p className="card-subtitle mb-2 text-muted">{user.location_gym}</p>
                                 <p className="card-text">Bio: {user.bio}</p>
                                 <div>
                                     {/* <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning" disabled>Favorited</button> */}
