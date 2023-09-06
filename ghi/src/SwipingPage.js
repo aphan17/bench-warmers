@@ -72,7 +72,6 @@ const SwipingPageList = () => {
                                 <p className="card-subtitle mb-2 text-muted">{user.location_gym}</p>
                                 <p className="card-text">Bio: {user.bio}</p>
                                 <div>
-                                    {/* <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning" disabled>Favorited</button> */}
                                     <button type="button" onClick={()=> acceptFavoriteUser(currentUser.id, user.id)} className="btn btn-warning">Favorite</button>
                                 </div>
 
