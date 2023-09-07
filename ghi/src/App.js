@@ -12,6 +12,7 @@ import LoginForm from "./LoginForm.js";
 import CardEvents from "./CardEvents.jsx";
 import SwipingPageList from "./SwipingPage.js";
 import BookMarkedEvents from "./BookMarkedEvents.js";
+import MainPage from "./HomePage.js";
 
 
 
@@ -37,6 +38,7 @@ function App() {
             </Route>
 
             <Route path="/create/users" element={<SignUpForm/>}/>
+            <Route path="/home" element={<MainPage/>}/>
 
 
             {/* <Route path="card/events" element={<CardEvents />}></Route> */}

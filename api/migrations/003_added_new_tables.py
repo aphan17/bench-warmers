@@ -48,8 +48,8 @@ steps = [
             id SERIAL primary key,
             user_id INT,
             favorite_id INT,
-            FOREIGN KEY (user_id) REFERENCES Users(id),
-            FOREIGN KEY (favorite_id) REFERENCES Users(id)
+            FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+            FOREIGN KEY (favorite_id) REFERENCES Users(id) ON DELETE CASCADE
         );
         """,
         """
