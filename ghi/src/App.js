@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from "./Nav.js";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
 import UserProfilePage from "./ProfilePage.js";
 import EditProfile from "./EditProfile.js";
 import "./App.css";
@@ -17,20 +14,17 @@ import MainPage from "./HomePage.js";
 
 
 function App() {
-  const [launchInfo, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);
 
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, '');
 
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
       <Nav />
         <div className="container">
           <Routes>
             <Route path="/login" element={<LoginForm/>}></Route>
-            <Route path="/login" element={<LoginForm/>}></Route>
-
-            <Route path="/" element={<Construct info={launchInfo} />} />
 
             <Route path="/profile/">
               <Route path="page" element={<UserProfilePage />} />
@@ -38,20 +32,9 @@ function App() {
             </Route>
 
             <Route path="/create/users" element={<SignUpForm/>}/>
-            <Route path="/home" element={<MainPage/>}/>
-
-
-            {/* <Route path="card/events" element={<CardEvents />}></Route> */}
-            {/* <Route path="card/events" element={<CardEvents />}></Route> */}
+            <Route path="/" element={<MainPage/>}/>
 
             <Route path="users" element={<SwipingPageList/>}/>
-            {/* <Route path="/card/events" element={<CardEvents />}></Route> */}
-
-            {/* <Route path="/users" element={<SwipingPageList/>}/> */}
-            <Route path="/card/events" element={<CardEvents />}></Route>
-
-            {/* <Route path="/users" element={<SwipingPageList/>}/> */}
-
 
             <Route path="card/events" element={<CardEvents />}></Route>
             <Route path="/create/event" element={<EventForm/>}></Route>

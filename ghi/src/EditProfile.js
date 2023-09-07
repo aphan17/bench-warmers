@@ -3,7 +3,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 
 function EditProfile(props) {
-  const {token, logout, fetchWithToken} = useToken();
+  const {token, logout} = useToken();
   const [username, setUsername] = useState(props.user.username);
   const [firstName, setFirstName] = useState(props.user.firstName);
   const [lastName, setLastName] = useState(props.user.lastName);

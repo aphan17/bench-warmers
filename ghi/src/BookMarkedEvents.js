@@ -4,11 +4,11 @@ import useToken from '@galvanize-inc/jwtdown-for-react';
 
 
 const EventCard =({data,loadAttendees})=>{
-const {token,  fetchWithToken} = useToken();
+const {fetchWithToken} = useToken();
   async function removeRsvp(attendee_id) {
 
     const url = `http://localhost:8000/api/attendees/${attendee_id}`;
-    const response = await fetchWithToken(url, 'DELETE');
+    await fetchWithToken(url, 'DELETE');
 
     loadAttendees()}
 
@@ -80,11 +80,12 @@ export default function BookMarkedEvents() {
     }
 
 
-
+  /* eslint-disable */
     useEffect(() => {
     if (token){
       loadAttendees();}
     }, [token]);
+  /* eslint-enable */
 
     return (
       <div className="Event">

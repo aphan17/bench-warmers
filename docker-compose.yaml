@@ -16,7 +16,7 @@ services:
     environment:
       SIGNING_KEY: ce9cfa8a22baf723ce7c6bdb6cce8e7dbc9f122527aacb8f8f46b88046919b54
       CORS_HOST: http://localhost:3000
-      DATABASE_URL: postgresql://bench_warmers:secret@postgres/benchwarmersdb
+      DATABASE_URL: postgresql://benchwarmers:secret@postgres/benchwarmersdb
       WAIT_HOSTS: postgres:5432
       PORT: 8000
       WAIT_BEFORE: 5

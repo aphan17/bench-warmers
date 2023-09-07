@@ -6,7 +6,6 @@ import EditProfile from "./EditProfile";
 function UserProfilePage() {
     const {token, logout, fetchWithToken} = useToken();
     const [user, setUser] = useState({});
-    const [location, setLocation] = useState({})
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -28,9 +27,11 @@ function UserProfilePage() {
       setUser(result);
     }
   };
+   /* eslint-disable */
   useEffect(() => {
     getUserData();
   }, [token]);
+   /* eslint-enable */
 
 
     return (
