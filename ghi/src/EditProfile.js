@@ -91,7 +91,7 @@ function EditProfile(props) {
     }
   }
 
-  useEffect(() => {
+  useEffect( () => {
     getListLocations();
   }, [])
 
