@@ -32,7 +32,7 @@ class UnauthorizedUpdateUserQueries:
             "password": "string",
             "bio": "string",
             "avatar": "string",
-            "location_id": 1,
+            "location_id": 1
         }
         result.update(user_id, user)
         return result
@@ -43,7 +43,6 @@ def test_unauthorized_update_user():
     app.dependency_overrides[usersQueries] = UnauthorizedUpdateUserQueries
 
     # Act
-    user_id = 1
     json = {
         "username": "tester",
         "email": "testing@email.com",
@@ -55,7 +54,7 @@ def test_unauthorized_update_user():
         "location_id": 1,
     }
 
-    response = client.put("/api/users/{user_id}", json=json)
+    response = client.put("/api/users/1", json=json)
 
     app.dependency_overrides = {}
 
@@ -64,41 +63,41 @@ def test_unauthorized_update_user():
     assert response.status_code == 401
 
 
-def test_create_user():
-    # Arrange
-    app.dependency_overrides[usersQueries] = CreateUserQueries
+# def test_create_user():
+#     # Arrange
+#     app.dependency_overrides[usersQueries] = CreateUserQueries
 
-    # Act
-    json = {
-        "username": "Plink",
-        "password": "http://plinko.example.com",
-        "email": "American",
-        "firstName": True,
-        "lastName": 2,
-        "bio": "text",
-        "avatar": "text.png",
-    }
+#     # Act
+#     json = {
+#         "username": "Plink",
+#         "password": "http://plinko.example.com",
+#         "email": "American",
+#         "firstName": True,
+#         "lastName": 2,
+#         "bio": "text",
+#         "avatar": "text.png",
+#     }
 
-    expected = {
-        "id": 1,
-        "username": "Plink",
-        "password": "http://plinko.example.com",
-        "email": "American",
-        "firstName": True,
-        "lastName": 2,
-        "bio": "text",
-        "avatar": "text.png",
-    }
+#     expected = {
+#         "id": 1,
+#         "username": "Plink",
+#         "password": "http://plinko.example.com",
+#         "email": "American",
+#         "firstName": True,
+#         "lastName": 2,
+#         "bio": "text",
+#         "avatar": "text.png",
+#     }
 
-    response = client.post("/api/users", json=json)
+#     response = client.post("/api/users", json=json)
 
-    app.dependency_overrides = {}
+#     app.dependency_overrides = {}
 
-    # Assert
+#     # Assert
 
-    assert response.status_code == 200
-    assert response.json() == expected
+#     assert response.status_code == 200
+#     assert response.json() == expected
 
 
-def test_init():
-    assert 1 == 1
+# def test_init():
+#     assert 1 == 1

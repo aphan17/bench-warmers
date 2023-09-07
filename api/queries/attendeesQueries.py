@@ -38,8 +38,6 @@ class AttendeesOutWithEvent(AttendeesOut):
     location_id: Optional[int] = None
     total_attendees: Optional[int] = None
 
-#figure out how to include total attentdees
-
 
 class AttendeesListOut(BaseModel):
     attendees: List[AttendeesOutWithEvent]
@@ -80,7 +78,7 @@ class AttendeesQueries:
     def create_attendee(self, attendee: AttendeesIn) -> AttendeesOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
-                result = cur.execute(
+                cur.execute(
                     """
                     INSERT INTO attendees (
                         user_id, event_id

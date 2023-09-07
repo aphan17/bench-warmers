@@ -17,7 +17,7 @@ router = APIRouter()
 
 @router.get("/api/events", response_model=EventsListOut)
 def get_events(queries: EventQueries = Depends()):
-    return {'events':queries.get_all_events()}
+    return {'events': queries.get_all_events()}
 
 
 @router.get("/api/event/{event_id}", response_model=Optional[EventsOut])
@@ -45,7 +45,6 @@ def delete_event(event_id: int, queries: EventQueries = Depends(),
         return False
 
 
-
 @router.post("/api/events", response_model=EventsIn)
 def create_event(event: EventsIn, queries: EventQueries = Depends(),
                  account_data: dict = Depends(authenticator.get_current_account_data)
@@ -54,7 +53,6 @@ def create_event(event: EventsIn, queries: EventQueries = Depends(),
         return queries.create_event(event)
     except ForeignKeyViolation:
         raise HTTPException(status_code=401, detail="Failed to create event")
-
 
 
 @router.put("/api/event/{event_id}", response_model=EventsOut)
