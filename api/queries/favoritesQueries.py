@@ -6,14 +6,17 @@ from fastapi import HTTPException
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
+
 class FavoriteOut(BaseModel):
     id: int
     user_id: int
     favorite_id: int
 
+
 class FavoriteIn(BaseModel):
     user_id: int
     favorite_id: int
+
 
 class FavoriteOutDetails(BaseModel):
     id: int
@@ -27,10 +30,10 @@ class FavoriteOutDetails(BaseModel):
 
 class FavoriteQueries:
     # post method to add a favorite
-    def add_favorite(self, favorite:FavoriteIn) -> FavoriteOut:
+    def add_favorite(self, favorite: FavoriteIn) -> FavoriteOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
-                cur.execute (
+                cur.execute(
                     """
                     SELECT id FROM favorites
                     WHERE user_id = %s AND favorite_id = %s
@@ -67,7 +70,7 @@ class FavoriteQueries:
     def get_user_favorites(self, user_id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
-                cur.execute (
+                cur.execute(
                     """
                     SELECT
                     f.id as id,
@@ -99,7 +102,7 @@ class FavoriteQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute (
+                    cur.execute(
                         """
                         SELECT
                         f.id as id,

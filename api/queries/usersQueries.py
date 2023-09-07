@@ -2,7 +2,6 @@ import os
 from psycopg_pool import ConnectionPool
 from typing import List, Optional
 from pydantic import BaseModel
-from typing import Union
 from jwtdown_fastapi.authentication import Token
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
@@ -39,7 +38,7 @@ class UserIn(BaseModel):
     password: str
     bio: str
     avatar: str
-    location_gym: Optional[str]= None
+    location_gym: Optional[str] = None
 
 
 class UserToken(Token):

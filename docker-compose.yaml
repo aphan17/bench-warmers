@@ -8,15 +8,15 @@ services:
               - postgres-data:/var/lib/postgresql/data
           environment:
               POSTGRES_PASSWORD: secret
-              POSTGRES_USER: example_user
-              POSTGRES_DB: example_db
+              POSTGRES_USER: benchwarmers
+              POSTGRES_DB: benchwarmersdb
           ports:
               - 15432:5432
   fastapi:
     environment:
       SIGNING_KEY: ce9cfa8a22baf723ce7c6bdb6cce8e7dbc9f122527aacb8f8f46b88046919b54
       CORS_HOST: http://localhost:3000
-      DATABASE_URL: postgresql://example_user:secret@postgres/example_db
+      DATABASE_URL: postgresql://benchwarmers:secret@postgres/benchwarmersdb
       WAIT_HOSTS: postgres:5432
       PORT: 8000
       WAIT_BEFORE: 5

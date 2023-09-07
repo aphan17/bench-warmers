@@ -10,7 +10,6 @@ from queries.attendeesQueries import (
     AttendeesListOut
 
 )
-from psycopg.errors import ForeignKeyViolation
 from authenticator import authenticator
 
 
@@ -18,8 +17,8 @@ router = APIRouter()
 
 
 @router.get("/api/attendees", response_model=AttendeesListOut)
-def get_all_attendee(queries: AttendeesQueries = Depends()):
-            #    account_data: dict = Depends(authenticator.get_current_account_data)):
+def get_all_attendee(queries: AttendeesQueries = Depends(),
+                     account_data: dict = Depends(authenticator.get_current_account_data)):
 
     if len(queries.get_all_attendee()) == 0:
         raise HTTPException(status_code=404, detail="No events found")
@@ -29,7 +28,7 @@ def get_all_attendee(queries: AttendeesQueries = Depends()):
 
 @router.post("/api/attendees", response_model=AttendeesIn)
 def create_attendee(event: AttendeesIn, queries: AttendeesQueries = Depends(),
-                 account_data: dict = Depends(authenticator.get_current_account_data)):
+                    account_data: dict = Depends(authenticator.get_current_account_data)):
 
     return queries.create_attendee(event)
 
@@ -48,7 +47,7 @@ def delete_event(event_id: int, queries: AttendeesQueries = Depends(),
 
 @router.get("/api/my/rsvps", response_model=AttendeesListOut)
 def get_all_RSVPS(queries: AttendeesQueries = Depends(),
-                account_data: dict = Depends(authenticator.get_current_account_data)):
+                  account_data: dict = Depends(authenticator.get_current_account_data)):
 
     user_id = account_data["id"]
 

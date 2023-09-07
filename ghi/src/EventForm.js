@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
-import { useParams } from "react-router-dom";
 
 function EventForm() {
   const [eventName, setEventName] = useState('');
@@ -8,27 +7,27 @@ function EventForm() {
   const [stateDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [numAttendees, setNumAttendees] = useState('');
-  const params = useParams();
   const {token,  fetchWithToken} = useToken();
   const [userId, setUser] = useState({});
-  const [location, setLocation] = useState('');
-  const [locations, setLocations] = useState([]);
+  // note: for front end deployment lint issues, had to comment out for now since code was unfinished, marcus will fix issue upon pulling down code.
+  // const [location, setLocation] = useState('');
+  // const [locations, setLocations] = useState([]);
 
-  async function fetchLocation() {
-    const url = 'http://localhost:8000/api/location/';
+  // async function fetchLocation() {
+  //   const url = 'http://localhost:8000/api/location/';
 
-    const response = await fetch(url);
+  //   const response = await fetch(url);
 
-  if (response.ok) {
-    const data = await response.json();
-    setLocations(data.gym);
+  // if (response.ok) {
+  //   const data = await response.json();
+  //   setLocations(data.gym);
 
-    }
-  }
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchLocation();
-  }, [])
+  // useEffect(() => {
+  //   fetchLocation();
+  // }, [])
 
   const getUserData = async () => {
     if (token) {
@@ -67,17 +66,19 @@ function EventForm() {
       setDescription('');
       setStartDate('');
       setEndDate('');
-      setNumAttendees('');
-      setLocation('')
+      setNumAttendees('')
+      // setLocation('')
     } else {
       alert('An error occurred while adding customer.');
     }
   }
   }
 
+   /* eslint-disable */
     useEffect(() => {
         getUserData();
     }, [token]);
+   /* eslint-enable */
 
   return (
     <div className="row">

@@ -22,12 +22,13 @@ const SwipingPageList = () => {
             console.error("An error occured fetching the data")
         }
     }
+     /* eslint-disable */
     useEffect(()=> {
         if (token) {
             getUsers();
         }
     }, [token]);
-
+    /* eslint-enable */
 
     const getCurrentUser = async () => {
         if (token) {
@@ -36,9 +37,11 @@ const SwipingPageList = () => {
             setCurrentUser(currentUser)
         }
     }
+    /* eslint-disable */
     useEffect(() => {
         getCurrentUser();
     }, [token]);
+     /* eslint-enable */
 
 
     const acceptFavoriteUser = async (userID, favoriteID) => {
@@ -54,10 +57,9 @@ const SwipingPageList = () => {
         if (response.ok) {
             const favoritedUsers = await response.json();
             setFavoritedUsers(favoritedUsers);
-            console.log(favoritedUsers);
         }
     }
-
+    console.log(favoritedUsers);
 
     return (
         <div className="card-deck">

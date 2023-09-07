@@ -10,7 +10,9 @@ from routers import (
 )
 from authenticator import authenticator
 
+
 app = FastAPI()
+
 
 app.include_router(eventsRouters.router)
 app.include_router(usersRouters.router)
@@ -27,6 +29,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+def root():
+    return {"message": "You hit the root path!"}
 
 
 @app.get("/api/launch-details")
