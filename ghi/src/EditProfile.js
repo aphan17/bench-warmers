@@ -17,7 +17,7 @@ function EditProfile(props) {
   const navigate = useNavigate();
 
   async function getListLocations() {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/locations/`);
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/locations`);
     if (response.ok){
       const listLocations = await response.json();
       setAllLocations(listLocations);
