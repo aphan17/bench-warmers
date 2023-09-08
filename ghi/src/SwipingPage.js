@@ -9,7 +9,7 @@ const SwipingPageList = () => {
 
 
     const getCurrentUser = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/token/`;
+        const url = `${process.env.REACT_APP_API_HOST}/token`;
         const response = await fetch(url, {
             headers: { Authorization: `Bearer ${token}`},
             credentials: "include"
@@ -34,7 +34,7 @@ const SwipingPageList = () => {
 
 
     const getUsers = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/api/users/`
+        const url = `${process.env.REACT_APP_API_HOST}/api/users`
         const response = await fetch(url, {
             headers: { Authorization: `Bearer ${token}` }
         })
