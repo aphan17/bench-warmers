@@ -3,6 +3,9 @@ from psycopg_pool import ConnectionPool
 from typing import List, Optional
 from pydantic import BaseModel
 from jwtdown_fastapi.authentication import Token
+from fastapi import HTTPException
+from psycopg.errors import ForeignKeyViolation, UniqueViolation
+
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
@@ -183,8 +186,18 @@ class UserQueries:
                     )
                 data = user.dict()
                 return UserOutWithPassword(id=user_id, **data, hashedPassword=hashed_password)
+        except ForeignKeyViolation:
+            raise HTTPException(
+                status_code=400,
+                detail="Unable to update user due to foreign key violation, location does not exist"
+            )
+        except UniqueViolation:
+            raise HTTPException(
+                status_code=400,
+                detail="Unable to update user, username already exists"
+            )
         except Exception as e:
-            return e
+            raise Exception("Error:", e)
 
     def delete_user(self, user_id) -> bool:
         try:

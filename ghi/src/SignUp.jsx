@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 
- 
+
 
 
 export default function SignUpForm() {
@@ -28,14 +28,14 @@ export default function SignUpForm() {
          bio:bio,
         };
 
-    const response = await fetch("http://localhost:8000/api/users", {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     });
-    
+
     if (response.ok) {
       setUserName('');
       setFirstName('');
@@ -48,7 +48,7 @@ export default function SignUpForm() {
       navigate("/login")
     } else {
       alert('An error occurred while creating a user.');
-    
+
 }
 }
 
