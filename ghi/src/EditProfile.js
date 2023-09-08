@@ -17,7 +17,7 @@ function EditProfile(props) {
   const navigate = useNavigate();
 
   async function getListLocations() {
-    const response = await fetch('http://localhost:8000/api/locations/');
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/locations/`);
     if (response.ok){
       const listLocations = await response.json();
       setAllLocations(listLocations);
@@ -75,7 +75,8 @@ function EditProfile(props) {
     data.password = password;
     data.location_gym = location;
 
-    const updateUrl = `http://localhost:8000/api/users/${data.id}`;
+    const updateUrl = `${process.env.REACT_APP_API_HOST}/api/users/${data.id}`;
+    console.log(updateUrl);
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify(data),
@@ -90,11 +91,11 @@ function EditProfile(props) {
       logUserOut();
     }
   }
-
+  /* eslint-disable */
   useEffect( () => {
     getListLocations();
   }, [])
-
+  /* eslint-enable */
     return (
   <form onSubmit={handleSubmit} id="edit-user-form">
   <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded " style={{width: "45rem"}} >
