@@ -7,7 +7,7 @@ const BookmarkedUsers = () => {
     const { token } = useToken();
 
     const getCurrentUser = async () => {
-        const url = `${process.env.REACT_APP_API_HOST}/token/`;
+        const url = `${process.env.REACT_APP_API_HOST}/token`;
         const response = await fetch(url, {
             headers: { Authorization: `Bearer ${token}`},
             credentials: "include"
