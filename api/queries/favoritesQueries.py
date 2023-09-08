@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from fastapi import HTTPException
 
@@ -26,6 +26,9 @@ class FavoriteOutDetails(BaseModel):
     fav_username: str
     fav_firstname: str
     fav_lastname: str
+    fav_bio: str
+    fav_avatar: str
+    fav_location_gym: Optional[str] = None
 
 
 class FavoriteQueries:
@@ -79,7 +82,11 @@ class FavoriteQueries:
                     f.favorite_id AS favorite_id,
                     favUser.username AS fav_username,
                     favUser.firstName as fav_firstname,
-                    favUser.lastName as fav_lastname
+                    favUser.lastName as fav_lastname,
+                    favUser.bio as fav_bio,
+                    favUser.avatar as fav_avatar,
+                    favUser.location_gym as fav_location_gym,
+                    favUser.email as fav_email
                     FROM users creatorUser
                     INNER JOIN
                         favorites f ON creatorUser.id = f.user_id
@@ -112,6 +119,9 @@ class FavoriteQueries:
                         favUser.username AS fav_username,
                         favUser.firstName as fav_firstname,
                         favUser.lastName as fav_lastname
+                        favUser.bio as fav_bio,
+                        favUser.avatar as fav_avatar,
+                        favUser.location_gym as fav_location_gym
                         FROM users creatorUser
                         INNER JOIN
                             favorites f ON creatorUser.id = f.user_id

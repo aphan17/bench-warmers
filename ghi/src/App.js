@@ -10,7 +10,7 @@ import CardEvents from "./CardEvents.jsx";
 import SwipingPageList from "./SwipingPage.js";
 import BookMarkedEvents from "./BookMarkedEvents.js";
 import MainPage from "./HomePage.js";
-
+import BookmarkedUsers from "./BookmarkedUsers.js";
 
 
 function App() {
@@ -35,6 +35,8 @@ function App() {
             <Route path="/" element={<MainPage/>}/>
 
             <Route path="users" element={<SwipingPageList/>}/>
+
+            <Route path="favorites/users" element={<BookmarkedUsers/>} />
 
             <Route path="card/events" element={<CardEvents />}></Route>
             <Route path="/create/event" element={<EventForm/>}></Route>
