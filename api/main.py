@@ -24,7 +24,10 @@ app.include_router(attendeesRouters.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", os.environ.get("CORS_HOST", None)],
+    allow_origins=[
+        os.environ.get("CORS_HOST", None),
+        "http://localhost:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

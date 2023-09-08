@@ -17,10 +17,13 @@ return(
                     <NavLink className="nav-link" to="/login">Log in</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="nav-link" to="/users">Swipe</NavLink>
+                    <NavLink className="nav-link" to="/users">Find Users</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink className="nav-link" to="/create/users">Create Account</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/favorites/users">Favorited Users</NavLink>
                 </li>
             </ul>
         </div>
