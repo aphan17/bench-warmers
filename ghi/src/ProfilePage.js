@@ -22,7 +22,7 @@ function UserProfilePage() {
 
     const getUserData = async () => {
     if (token) {
-      const url = `http://localhost:8000/api/accounts/`
+      const url = `${process.env.REACT_APP_API_HOST}/api/accounts`;
       const result = await fetchWithToken(url);
       setUser(result);
     }
