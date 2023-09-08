@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import "./Nav.css";
 
 function Nav() {
 return(
-<nav className="navbar navbar-expand-lg navbar-dark bg-info">
+<nav className="navbar navbar-expand-lg navbar-dark ">
     <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">Home</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

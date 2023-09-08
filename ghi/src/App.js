@@ -17,9 +17,20 @@ function App() {
 
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, '');
+  const background = 'https://images.alphacoders.com/692/692039.jpg';
 
   return (
-    <div>
+     <div style={{
+      height: "auto",
+      backgroundImage: `url(${background})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh'
+
+    }}>
       <BrowserRouter basename={basename}>
       <Nav />
         <div className="container">

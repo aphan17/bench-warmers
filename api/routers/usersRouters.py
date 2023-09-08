@@ -6,17 +6,13 @@ from fastapi import (
     APIRouter,
     Request,
 )
-
 from authenticator import authenticator
 from typing import Optional, List, Union
-
-# from pydantic import BaseModel
 from queries.usersQueries import Error
 from queries.usersQueries import (
     UserIn,
     UserOut,
     UserQueries,
-    DuplicateUserNameError,
     HttpError,
     UserToken,
 )
@@ -31,14 +27,6 @@ def get_one_user(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return account_data
-    # record = queries.get_one_user(username)
-    # if record is None:
-    #     raise HTTPException(
-    #         status_code=404,
-    #         detail="No user found with username {}".format(username),
-    #     )
-    # else:
-    #     return record
 
 
 @router.get("/api/users", response_model=Union[List[UserOut], Error])
@@ -94,7 +82,7 @@ async def create_account(
     hashed_password = authenticator.hash_password(info.password)
     try:
         account = repo.create_user(info, hashed_password)
-    except DuplicateUserNameError:
+    except:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",

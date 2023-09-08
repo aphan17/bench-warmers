@@ -1,62 +1,25 @@
 function MainPage() {
   return (
-    <div className="px-4 py-5 my-5 text-center" style={{backgroundColor: 'white'}}>
+    <div className="px-4 py-5 my-5 text-center bg-body rounded" style={{backgroundColor: 'white'}}>
       <h1 className="display-5 fw-bold">The bench</h1>
       <div className="col-lg-6 mx-auto">
-      <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-  <div className="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src="https://di-uploads-pod11.dealerinspire.com/shelormotormile/uploads/2020/05/Webp.net-resizeimage-29-1024x683.jpg" width="450" height="350" className="d-block w-100" alt="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/10482/images/zXrj9GBhQiScTfKgpuWf_hand-792920_1920.jpg" />
-    </div>
-    <div className="carousel-item">
-      <img src="https://cdn-hhehj.nitrocdn.com/ToqXpZTjEZKSBifHaxIWHgcfBUFQusOu/assets/images/optimized/rev-c442d06/wp-content/uploads/2021/08/Silvia-51-300x157.png"  width="450" height="350" className="d-block w-100" alt="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/10482/images/zXrj9GBhQiScTfKgpuWf_hand-792920_1920.jpg" />
-    </div>
-    <div className="carousel-item">
-      <img src="https://qph.cf2.quoracdn.net/main-qimg-1f5d88bc410521ce7c70dcfe97b2ebf6-lq" className="d-block w-100" width="450" height="350" alt="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/10482/images/zXrj9GBhQiScTfKgpuWf_hand-792920_1920.jpg" />
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtS8n70wNtBY0Q8lcA3DkEXBDrPdQBHK8GsQ&usqp=CAU"/>
         <p className="lead mb-4">
-          The premiere solution for automobile dealership
-          management!
+          The best place for finding your perfect gym partner!
         </p>
       </div>
   <div className="container">
   <div className="row align-items-start">
     <div className="col">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Welcome to our fitness community, THE BENCH!!! Where the journey to a healthier, happier you begins with a warm and enthusiastic welcome!
+    We're thrilled to have you here on our website, dedicated to helping you find the perfect gym buddy to share your fitness goals,
+    challenges, and triumphs. Whether you're a seasoned fitness enthusiast looking to push your limits or someone taking the first steps on their fitness journey,
+    our platform is designed to connect you with like-minded individuals who share your passion for wellness. Together, we believe in the power of motivation, accountability,
+    and support to help you achieve your fitness aspirations. So, dive in, and find your workout partner you've been waiting for, because here,
+    you're not just finding a gym buddy; you're finding a partner in your pursuit of a healthier, stronger you. Welcome to your fitness adventure!
     </div>
     <div className="col">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    We are based in San Jose so we highly reccomend selecting your gym to make it eaiser for your new gym buddy to find you.
     </div>
     </div>
     </div>
