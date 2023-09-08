@@ -76,6 +76,7 @@ function EditProfile(props) {
     data.location_gym = location;
 
     const updateUrl = `${process.env.REACT_APP_API_HOST}/api/users/${data.id}`;
+    console.log(updateUrl);
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify(data),
