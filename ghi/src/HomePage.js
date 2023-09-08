@@ -1,7 +1,7 @@
 function MainPage() {
   return (
     <div className="px-4 py-5 my-5 text-center" style={{backgroundColor: 'white'}}>
-      <h1 className="display-5 fw-bold">Mechanics Go</h1>
+      <h1 className="display-5 fw-bold">The bench</h1>
       <div className="col-lg-6 mx-auto">
       <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
   <div className="carousel-indicators">
