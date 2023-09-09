@@ -3,7 +3,7 @@ function MainPage() {
     <div className="px-4 py-5 my-5 text-center bg-body rounded" style={{backgroundColor: 'white'}}>
       <h1 className="display-5 fw-bold">The bench</h1>
       <div className="col-lg-6 mx-auto">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtS8n70wNtBY0Q8lcA3DkEXBDrPdQBHK8GsQ&usqp=CAU"/>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtS8n70wNtBY0Q8lcA3DkEXBDrPdQBHK8GsQ&usqp=CAU" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfW_9G9bDPhse7bBMYvatqGCuIB1s0MbeCbw&usqp=CAU"/>
         <p className="lead mb-4">
           The best place for finding your perfect gym partner!
         </p>
