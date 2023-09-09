@@ -6,6 +6,7 @@ const BookmarkedUsers = () => {
     const [favorites, setFavorites] = useState([]);
     const { token } = useToken();
 
+
     const getCurrentUser = async () => {
         const url = `${process.env.REACT_APP_API_HOST}/token`;
         const response = await fetch(url, {
@@ -50,7 +51,6 @@ const BookmarkedUsers = () => {
         }
     }, [currentUser.id])
     /* eslint-enable */
-
 
 
     return (

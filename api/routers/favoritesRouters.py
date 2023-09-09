@@ -30,7 +30,7 @@ def get_user_favorites(
         return record
 
 
-@router.get("/api/favorites", response_model=List[FavoriteOutDetails])
+@router.get("/api/favorites", response_model=List[FavoriteOut])
 def get_all_favorites(
     queries: FavoriteQueries = Depends()
 ):
