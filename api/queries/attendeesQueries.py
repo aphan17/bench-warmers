@@ -38,7 +38,7 @@ class AttendeesOutWithEvent(AttendeesOut):
     location_id: Optional[str] = None
     total_attendees: Optional[int] = None
 
-    
+
 class AttendeesListOut(BaseModel):
     attendees: List[AttendeesOutWithEvent]
 

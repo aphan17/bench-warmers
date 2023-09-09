@@ -144,5 +144,3 @@ class EventQueries:
                 )
                 old_data = event.dict()
                 return EventsOut(id=event_id, **old_data)
-
-

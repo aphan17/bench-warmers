@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from main import app
 from queries.locationQueries import LocationQueries, LocationOut
 
-# client = TestClient(app)
+client = TestClient(app)
 
 
 class EmptyLocationQueries:

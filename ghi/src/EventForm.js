@@ -59,7 +59,7 @@ function EventForm() {
       })
 
     if (response.ok) {
-      alert('Customer added successfully!');
+      alert('Event added successfully!');
       setEventName('');
       setDescription('');
       setStartDate('');
@@ -67,7 +67,7 @@ function EventForm() {
       setNumAttendees('')
       setLocation('')
     } else {
-      alert('An error occurred while adding customer.');
+      alert('An error occurred while creating an event.');
     }
   }
   }
