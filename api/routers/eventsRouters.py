@@ -1,6 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException
-
-
 from typing import Optional
 from queries.eventsQueries import (
     EventQueries,
@@ -52,7 +50,7 @@ def create_event(event: EventsIn, queries: EventQueries = Depends(),
     try:
         return queries.create_event(event)
     except ForeignKeyViolation:
-        raise HTTPException(status_code=401, detail="Failed to create event")
+        raise HTTPException(status_code=400, detail="Failed to create event")
 
 
 @router.put("/api/event/{event_id}", response_model=EventsOut)

@@ -13,6 +13,7 @@ import MainPage from "./HomePage.js";
 import BookmarkedUsers from "./BookmarkedUsers.js";
 
 
+
 function App() {
 
   const domain = /https:\/\/[^/]+/;
@@ -36,6 +37,9 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/login" element={<LoginForm/>}></Route>
+           
+
+            
 
             <Route path="/profile/">
               <Route path="page" element={<UserProfilePage />} />
@@ -43,9 +47,14 @@ function App() {
             </Route>
 
             <Route path="/create/users" element={<SignUpForm/>}/>
-            <Route path="/" element={<MainPage/>}/>
+           
+
 
             <Route path="users" element={<SwipingPageList/>}/>
+            
+            <Route path="/" element={<MainPage/>}/>
+
+            
 
             <Route path="favorites/users" element={<BookmarkedUsers/>} />
 

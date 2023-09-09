@@ -5,32 +5,60 @@ function Nav() {
 return(
 <nav className="navbar navbar-expand-lg navbar-dark ">
     <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">Home</NavLink>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/profile/page">Profile</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/login">Log in</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/users">Find Users</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/create/users">Create Account</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/favorites/users">Favorited Users</NavLink>
-                </li>
-            </ul>
+      <NavLink className="navbar-brand" to="/">
+        Home
+      </NavLink>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/profile/page">
+              Profile
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/login">
+              Log in
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/users">Find Users</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/create/users">
+              Create Account
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/card/events">
+              Events
+            </NavLink>
+           </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/create/event">Create Event</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/favorites/users">Favorited Users</NavLink>
+            </li>
+            <li className="nav-item">
+               <NavLink className="nav-link" to="/list/bookmarkedevents">My RSVP'd Events</NavLink>
+            </li>
+          </ul>
         </div>
+
     </div>
-</nav>
-)
+  </nav>
+);
 }
 
 export default Nav;
