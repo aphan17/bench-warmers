@@ -35,7 +35,7 @@ function UserProfilePage() {
 
 
     return (
-      <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded " style={{width: "45rem"}} >
+      <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded" style={{width: "45rem", margin: "4rem"}} >
         <img src={user.avatar}
          alt="Cannot display user avatar"
          className=" rounded mx-auto d-block" width="165" height="165"/>

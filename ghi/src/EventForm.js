@@ -13,7 +13,7 @@ function EventForm() {
   const [locations, setLocations] = useState([]);
 
   async function fetchLocation() {
-    const url = `${process.env.REACT_APP_API_HOST}/api/locations/`;
+    const url = `${process.env.REACT_APP_API_HOST}/api/locations`;
 
     const response = await fetch(url);
 
@@ -28,7 +28,7 @@ function EventForm() {
 
   const getUserData = async () => {
     if (token) {
-      const url = `${process.env.REACT_APP_API_HOST}/api/accounts/`
+      const url = `${process.env.REACT_APP_API_HOST}/api/accounts`
       const result = await fetchWithToken(url);
       setUser(result.id);
 
