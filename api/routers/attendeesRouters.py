@@ -1,12 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 
-# from typing import Optional
 from queries.attendeesQueries import (
     AttendeesQueries,
-    # AttendeesOut,
     AttendeesIn,
-    # AttendeesOutWithEvent,
     AttendeesListOut
 
 )
@@ -17,13 +14,8 @@ router = APIRouter()
 
 
 @router.get("/api/attendees", response_model=AttendeesListOut)
-def get_all_attendee(queries: AttendeesQueries = Depends(),
-                     account_data: dict = Depends(authenticator.get_current_account_data)):
-
-    if len(queries.get_all_attendee()) == 0:
-        raise HTTPException(status_code=404, detail="No events found")
-    else:
-        return {"attendees": queries.get_all_attendee()}
+def get_all_attendee(queries: AttendeesQueries = Depends()):
+    return {"attendees": queries.get_all_attendee()}
 
 
 @router.post("/api/attendees", response_model=AttendeesIn)

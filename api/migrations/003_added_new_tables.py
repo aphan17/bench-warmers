@@ -23,8 +23,7 @@ steps = [
     [
         """
         ALTER TABLE events
-        ADD location_id int NULL,
-        ADD FOREIGN KEY (location_id) REFERENCES locations(id)
+        ADD location_id text REFERENCES locations(gym) NULL
         """,
         """
         DROP TABLE events;

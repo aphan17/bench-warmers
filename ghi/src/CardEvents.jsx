@@ -7,7 +7,7 @@ const EventCard =({data,loadEvents})=>{
 
   // create function for making an rsvp
   // fetch all current users in the rsvp
-  
+
   async function UpdateNumAttendees(event_id) {
     const fetchConfig = {
       method: "GET",
@@ -100,11 +100,11 @@ const EventCard =({data,loadEvents})=>{
 
 export default function CardEvents() {
     const [events,setEvents] = useState([]);
-    
-    
+
+
 
     async function loadEvents() {
-     
+
       const response = await fetch("http://localhost:8000/api/events/");
 
 
@@ -115,9 +115,9 @@ export default function CardEvents() {
     }
 
     useEffect(() => {
-      
+
         loadEvents();
-    
+
       }, []);
 
     return (

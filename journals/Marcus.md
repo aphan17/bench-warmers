@@ -24,3 +24,7 @@ started creating event form front end
 ### 8/30/2023 ###
 worked on adding new tablers and columns to ur tables
 updated back end end points to wokr with updated tables and fixed back end auth
+
+### 8/31/2023 ###
+worked on creating attendees tables to have queries and routers
+worked on creating the book marked events for a logged in user

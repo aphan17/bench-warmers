@@ -15,7 +15,7 @@ class EventsIn(BaseModel):
     end_date: datetime
     description: str
     num_of_attendees: int
-    location_id: Optional[int] = None
+    location_id: Optional[str] = None
 
 
 class AttendeesOut(BaseModel):
@@ -35,10 +35,10 @@ class AttendeesOutWithEvent(AttendeesOut):
     end_date: datetime
     description: str
     num_of_attendees: int
-    location_id: Optional[int] = None
+    location_id: Optional[str] = None
     total_attendees: Optional[int] = None
 
-
+    
 class AttendeesListOut(BaseModel):
     attendees: List[AttendeesOutWithEvent]
 

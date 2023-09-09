@@ -23,6 +23,10 @@ return(
                     <NavLink className="nav-link" to="/create/users">Create Account</NavLink>
                 </li>
                 <li className="nav-item">
+                    <NavLink className="nav-link" to="/create/event">Create Event</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/list/bookmarkedevents">My RSVP'd Events</NavLink>
                     <NavLink className="nav-link" to="/favorites/users">Favorited Users</NavLink>
                 </li>
             </ul>
