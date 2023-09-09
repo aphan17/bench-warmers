@@ -45,11 +45,14 @@ class FavoriteQueries:
                         [
                             favorite.user_id,
                             favorite.favorite_id,
-                        ]
+                        ],
                     )
                     already_exists = cur.fetchone()
                     if already_exists:
-                        raise HTTPException(status_code=400, detail="Favorited pair already exists")
+                        raise HTTPException(
+                            status_code=400,
+                            detail="Favorited pair already exists",
+                        )
                     else:
                         cur.execute(
                             """
@@ -63,7 +66,6 @@ class FavoriteQueries:
                             [
                                 favorite.user_id,
                                 favorite.favorite_id,
-
                             ],
                         )
                         id = cur.fetchone()[0]
@@ -89,8 +91,7 @@ class FavoriteQueries:
                         favUser.lastName as fav_lastname,
                         favUser.bio as fav_bio,
                         favUser.avatar as fav_avatar,
-                        favUser.location_gym as fav_location_gym,
-                        favUser.email as fav_email
+                        favUser.location_gym as fav_location_gym
                         FROM users creatorUser
                         INNER JOIN
                             favorites f ON creatorUser.id = f.user_id

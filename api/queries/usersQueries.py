@@ -52,10 +52,6 @@ class HttpError(BaseModel):
     detail: str
 
 
-class DuplicateUserNameError(ValueError):
-    pass
-
-
 class UserQueries:
     def get_all_users(self) -> List[UserOut]:
         with pool.connection() as conn:
@@ -146,16 +142,18 @@ class UserQueries:
                         user.lastName,
                         user.bio,
                         user.avatar,
-                        user.location_gym
+                        user.location_gym,
                     ],
                 )
                 id = result.fetchone()[0]
                 data = user.dict()
                 return UserOutWithPassword(
                     id=id, **data, hashedPassword=hashed_password
-                    )
+                )
 
-    def update_user(self, user_id: int, user: UserIn, hashed_password: str) -> UserOutWithPassword:
+    def update_user(
+        self, user_id: int, user: UserIn, hashed_password: str
+    ) -> UserOutWithPassword:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as cur:
@@ -185,16 +183,18 @@ class UserQueries:
                         ],
                     )
                 data = user.dict()
-                return UserOutWithPassword(id=user_id, **data, hashedPassword=hashed_password)
+                return UserOutWithPassword(
+                    id=user_id, **data, hashedPassword=hashed_password
+                )
         except ForeignKeyViolation:
             raise HTTPException(
                 status_code=400,
-                detail="Unable to update user due to foreign key violation, location does not exist"
+                detail="Unable to update user due to foreign key violation, location does not exist",
             )
         except UniqueViolation:
             raise HTTPException(
                 status_code=400,
-                detail="Unable to update user, username already exists"
+                detail="Unable to update user, username already exists",
             )
         except Exception as e:
             raise Exception("Error:", e)
@@ -212,7 +212,7 @@ class UserQueries:
                     )
         except Exception as e:
             print(e)
-            return False
+            return {"message": str(e)}
 
     def get_one_user_with_password(self, email) -> UserOut:
         with pool.connection() as conn:
@@ -242,7 +242,7 @@ class UserQueries:
                         email=record[4],
                         avatar=record[5],
                         bio=record[6],
-                        location_gym=record[7]
+                        location_gym=record[7],
                     )
                     return user
                 else:
