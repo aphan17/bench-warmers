@@ -9,29 +9,26 @@ function EventForm() {
   const [numAttendees, setNumAttendees] = useState('');
   const {token,  fetchWithToken} = useToken();
   const [userId, setUser] = useState({});
-  // note: for front end deployment lint issues, had to comment out for now since code was unfinished, marcus will fix issue upon pulling down code.
-  // const [location, setLocation] = useState('');
-  // const [locations, setLocations] = useState([]);
+  const [location, setLocation] = useState('');
+  const [locations, setLocations] = useState([]);
 
-  // async function fetchLocation() {
-  //   const url = 'http://localhost:8000/api/location/';
+  async function fetchLocation() {
+    const url = `${process.env.REACT_APP_API_HOST}/api/locations/`;
 
-  //   const response = await fetch(url);
+    const response = await fetch(url);
 
-  // if (response.ok) {
-  //   const data = await response.json();
-  //   setLocations(data.gym);
+  if (response.ok) {
+    const data = await response.json();
 
-  //   }
-  // }
+    setLocations(data);
+    }
+  }
 
-  // useEffect(() => {
-  //   fetchLocation();
-  // }, [])
+
 
   const getUserData = async () => {
     if (token) {
-      const url = `http://localhost:8000/api/accounts/`
+      const url = `${process.env.REACT_APP_API_HOST}/api/accounts/`
       const result = await fetchWithToken(url);
       setUser(result.id);
 
@@ -44,6 +41,7 @@ function EventForm() {
     const data = {
          name: eventName,
          description: description,
+         location_id: location,
          start_date: stateDate,
          end_date: endDate,
          creator_id: userId,
@@ -51,7 +49,7 @@ function EventForm() {
         };
 
     if (token) {
-      const response = await fetch("http://localhost:8000/api/events", {
+      const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/events`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -61,22 +59,26 @@ function EventForm() {
       })
 
     if (response.ok) {
-      alert('Customer added successfully!');
+      alert('Event added successfully!');
       setEventName('');
       setDescription('');
       setStartDate('');
       setEndDate('');
       setNumAttendees('')
-      // setLocation('')
+      setLocation('')
     } else {
-      alert('An error occurred while adding customer.');
+      alert('An error occurred while creating an event.');
     }
   }
   }
 
    /* eslint-disable */
     useEffect(() => {
+      if (token){
         getUserData();
+        fetchLocation();
+
+      }
     }, [token]);
    /* eslint-enable */
 
@@ -85,7 +87,7 @@ function EventForm() {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Create a new Event</h1>
-          <form onSubmit={handleSubmit} id="create-salesperson-form">
+          <form onSubmit={handleSubmit} id="create-event-form">
             <div className="form-floating mb-3">
               <input value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder="Event Name" required type="text" name="name" id="name" className="form-control" />
               <label htmlFor="firstName">Event Name</label>
@@ -94,16 +96,16 @@ function EventForm() {
               <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required type="text" name="description" id="description" className="form-control" />
               <label htmlFor="lastName">Description</label>
             </div>
-            {/* <div className="mb-3">
-              <select value={location} onChange={handleChangeLocation} required name="location_id" id="location_id" className="form-select">
+            <div className="mb-3">
+              <select value={location} onChange={(e) => setLocation(e.target.value)} required name="location_id" id="location_id" className="form-select">
                 <option value="">Choose a gym</option>
                 {locations.map(location => {
                   return (
-                    <option key={location.id} value={location.gym}></option>
+                    <option key={location.id} value={location.gym}>{location.gym}</option>
                   )
                 })}
               </select>
-            </div> */}
+            </div>
             <div className="form-floating mb-3">
               <input value={stateDate} onChange={(e) => setStartDate(e.target.value)} placeholder="State Date" required type="datetime-local" name="start_date" id="start_date" className="form-control" />
               <label htmlFor="phone_number">State Date</label>

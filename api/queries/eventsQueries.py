@@ -15,7 +15,7 @@ class EventsOut(BaseModel):
     end_date: datetime
     description: str
     num_of_attendees: int
-    location_id: Optional[int] = None
+    location_id: Optional[str] = None
 
 
 class EventsIn(BaseModel):
@@ -25,7 +25,7 @@ class EventsIn(BaseModel):
     end_date: datetime
     description: str
     num_of_attendees: int
-    location_id: Optional[int] = None
+    location_id: Optional[str] = None
 
 
 class EventsListOut(BaseModel):
@@ -144,41 +144,3 @@ class EventQueries:
                 )
                 old_data = event.dict()
                 return EventsOut(id=event_id, **old_data)
-
-    # def event_record_to_dict(self, row, description) -> EventsOut | None:
-    #     event = None
-    #     if row is not None:
-    #         event = {}
-    #         event_fields = [
-    #             "event_id",
-    #             "name",
-    #             "start_date",
-    #             "end_date",
-    #             "description",
-    #             "num_of_attendees"
-
-    #         ]
-    #         for i, column in enumerate(description):
-    #             if column.name in event_fields:
-    #                 event[column.name] = row[i]
-    #         event["id"] = event["event_id"]
-    #         user = {}
-    #         user_fields = [
-    #             "user_id",
-    #             "first",
-    #             "last",
-    #             "avatar",
-    #             "email",
-    #             "username",
-    #         ]
-    #         for i, column in enumerate(description):
-    #             if column.name in user_fields:
-    #                 user[column.name] = row[i]
-    #         user["id"] = user["user_id"]
-
-    #         event["creator_id"] = user
-
-    #         if "creator_id" in event:
-    #             return EventsListOut(**event)
-    #         else:
-    #             return EventsOut(**event)

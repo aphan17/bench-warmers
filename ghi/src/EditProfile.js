@@ -76,7 +76,6 @@ function EditProfile(props) {
     data.location_gym = location;
 
     const updateUrl = `${process.env.REACT_APP_API_HOST}/api/users/${data.id}`;
-    console.log(updateUrl);
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify(data),
@@ -109,7 +108,7 @@ function EditProfile(props) {
     </div>
      <div className="mb-3">
       <label htmlFor="Password">Password</label>
-      <input onChange={handlePasswordChange} value={password} type="text" className="form-control" id="password"/>
+      <input required onChange={handlePasswordChange} value={password} type="text" className="form-control" id="password"/>
     </div>
     <div className="mb-3">
       <label htmlFor="Firstname">First name</label>

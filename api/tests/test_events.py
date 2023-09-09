@@ -27,7 +27,6 @@ class CreateEventQueries:
 def test_get_all_events():
 
     app.dependency_overrides[EventQueries] = EmptyEventQueries
-
     response = client.get('/api/events')
 
     app.dependency_overrides = {}
