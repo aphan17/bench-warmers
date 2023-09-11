@@ -83,9 +83,7 @@ function EventForm() {
    /* eslint-enable */
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
+    <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded" style={{width: "45rem", margin: "4rem"}}>
           <h1>Create a new Event</h1>
           <form onSubmit={handleSubmit} id="create-event-form">
             <div className="form-floating mb-3">
@@ -121,8 +119,6 @@ function EventForm() {
             <button className="btn btn-primary">Create</button>
           </form>
         </div>
-      </div>
-    </div>
   );
 }
 

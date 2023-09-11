@@ -24,7 +24,7 @@ export default function SignUpForm() {
          lastName:lastName,
          email:email,
          password:password,
-         avatar:avatar,   
+         avatar:avatar,
          bio:bio,
         };
 
@@ -87,9 +87,7 @@ export default function SignUpForm() {
   }
 
     return (
-      <div className="row">
-        <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4">
+      <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded" style={{width: "45rem", margin: "4rem"}}>
             <h1>Sign Up!</h1>
             <form onSubmit={handleSubmit} id="Create-User-Form">
               <div className="form-floating mb-3">
@@ -199,7 +197,5 @@ export default function SignUpForm() {
               <button className="btn btn-primary">Sign Up!</button>
             </form>
           </div>
-        </div>
-      </div>
     );
 }

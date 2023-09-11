@@ -33,6 +33,19 @@ function UserProfilePage() {
   }, [token]);
    /* eslint-enable */
 
+   if (!user.username){
+    return(
+      <>
+      <div className="alert alert-danger" role="alert" style={{margin: "4rem"}}>
+      Go sign in to see your profile sport ;^)
+      </div>
+      <img src="https://media2.giphy.com/media/Tnchbhzt4fQQM/giphy.gif?cid=6c09b952s9le1lamen8q7ad3ij2ks0e7sy7614vpkkgfml1z&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="get outta here"
+       style={{
+        display: "block",
+        margin: "auto"}} />
+      </>
+    )
+   } else {
 
     return (
       <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded" style={{width: "45rem", margin: "4rem"}} >
@@ -55,5 +68,6 @@ function UserProfilePage() {
         {modalOpen && <EditProfile user={user} token={token} />}
       </div>
     );
+}
 }
 export default UserProfilePage;
