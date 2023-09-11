@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from "./Nav.js";
 import UserProfilePage from "./ProfilePage.js";
-import EditProfile from "./EditProfile.js";
 import "./App.css";
 import EventForm from "./EventForm.js";
 import SignUpForm from "./SignUp.jsx";
@@ -36,28 +35,12 @@ function App() {
       <Nav />
         <div className="container">
           <Routes>
-            <Route path="/login" element={<LoginForm/>}></Route>
-           
-
-            
-
-            <Route path="/profile/">
-              <Route path="page" element={<UserProfilePage />} />
-              <Route path="edit" element={<EditProfile />} />
-            </Route>
-
-            <Route path="/create/users" element={<SignUpForm/>}/>
-           
-
-
-            <Route path="users" element={<SwipingPageList/>}/>
-            
             <Route path="/" element={<MainPage/>}/>
-
-            
-
+            <Route path="/login" element={<LoginForm/>}></Route>
+            <Route path="/profile/page" element={<UserProfilePage />} />
+            <Route path="/create/users" element={<SignUpForm/>}/>
+            <Route path="users" element={<SwipingPageList/>}/>
             <Route path="favorites/users" element={<BookmarkedUsers/>} />
-
             <Route path="card/events" element={<CardEvents />}></Route>
             <Route path="/create/event" element={<EventForm/>}></Route>
             <Route path="/list/bookmarkedevents" element={<BookMarkedEvents/>}></Route>

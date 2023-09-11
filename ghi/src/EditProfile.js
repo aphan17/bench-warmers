@@ -87,7 +87,10 @@ function EditProfile(props) {
     };
     const response = await fetch(updateUrl, fetchConfig);
     if (response.ok){
+      alert("Edit was successful. Log back in to view changes.")
       logUserOut();
+    } else {
+      alert("An error has occured editing profile. Try again later")
     }
   }
   /* eslint-disable */
@@ -97,7 +100,7 @@ function EditProfile(props) {
   /* eslint-enable */
     return (
   <form onSubmit={handleSubmit} id="edit-user-form">
-  <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded " style={{width: "45rem"}} >
+  <div className="mx-auto border-success bg-light mb-3 mb-4 shadow p-3 mb-5 bg-body rounded" style={{width: "45rem", margin: "4rem"}} >
     <div className="mb-3">
       <label htmlFor="Email">Email address</label>
       <input onChange={handleEmailChange}  value={email} type="text" className="form-control" id="email" placeholder="name@example.com" />
