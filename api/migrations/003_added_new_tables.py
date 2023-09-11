@@ -33,8 +33,8 @@ steps = [
         """
         CREATE TABLE attendees (
             id SERIAL PRIMARY KEY NOT NULL,
-            event_id integer REFERENCES events(id),
-            user_id integer REFERENCES users(id)
+            event_id integer REFERENCES events(id) ON DELETE CASCADE,
+            user_id integer REFERENCES users(id) ON DELETE CASCADE
         );
         """,
         """

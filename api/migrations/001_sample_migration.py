@@ -21,7 +21,7 @@ steps = [
         """
         CREATE TABLE events (
             id SERIAL PRIMARY KEY NOT NULL,
-            creator_id integer NOT NULL REFERENCES users(id),
+            creator_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             name VARCHAR(50) NOT NULL,
             start_date TIMESTAMP NOT NULL,
             end_date TIMESTAMP NOT NULL,
