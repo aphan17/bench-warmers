@@ -100,7 +100,7 @@ const SwipingPageList = () => {
             })}
             </div>
             :
-            <div className="alert alert-danger py-10" role="alert">
+            <div className="alert alert-danger py-10" role="alert" style={{margin: "4rem"}}>
                 Please login!
             </div>
             }
