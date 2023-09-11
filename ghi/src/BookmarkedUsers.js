@@ -72,7 +72,7 @@ const BookmarkedUsers = () => {
                 )})}
             </div>
             :
-            <div className="alert alert-danger" role="alert">
+            <div className="alert alert-danger" role="alert" style={{margin: "4rem"}}>
                 Please login!
             </div>
             }
