@@ -5,6 +5,7 @@ const BookmarkedUsers = () => {
     const [currentUser, setCurrentUser] = useState({});
     const [favorites, setFavorites] = useState([]);
     const { token } = useToken();
+    const [loggedIn, setLoggedIn] = useState(false);
 
 
     const getCurrentUser = async () => {
@@ -17,6 +18,7 @@ const BookmarkedUsers = () => {
             const data = await response.json();
             const currentUser = data.user;
             setCurrentUser(currentUser);
+            setLoggedIn(true);
         } else {
             console.error("an error occured fetching the data");
         }
@@ -55,6 +57,7 @@ const BookmarkedUsers = () => {
 
     return (
         <div className="container">
+            {loggedIn ?
             <div className="row justify-content-center">
                 {favorites.map(favorite => {
                     return (
@@ -68,6 +71,12 @@ const BookmarkedUsers = () => {
                         </div>
                 )})}
             </div>
+            :
+            <div className="alert alert-danger" role="alert">
+                Please login!
+            </div>
+            }
+
 
         </div>
     );

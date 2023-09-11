@@ -1,11 +1,14 @@
 import {useState, useEffect} from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
+import { useNavigate } from "react-router-dom";
 
 const SwipingPageList = () => {
     const [users, setUsers] = useState([]);
     const { token } = useToken();
     const [currentUser, setCurrentUser] = useState({});
     const [favoritedUsers, setFavoritedUsers] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
 
     const getCurrentUser = async () => {
@@ -18,6 +21,7 @@ const SwipingPageList = () => {
             const data = await response.json();
             const currentUser = data.user;
             setCurrentUser(currentUser);
+            setLoggedIn(true);
 
         } else {
             console.error("an error occured fetching the data");
@@ -70,17 +74,18 @@ const SwipingPageList = () => {
         if (response.ok) {
             const favoritedUsers = await response.json();
             setFavoritedUsers(favoritedUsers);
+            navigate("/favorites/users");
         }
     }
 
 
-
     return (
         <div className="container">
+           {loggedIn ?
             <div className = "row justify-content-center">
             {users.filter(user => user.id !== currentUser.id).map(user => {
                 return (
-                    <div key={user.id} className="card w-75 col-md-4 mb-4 shadow">
+                    <div key={user.id} className="card w-50 col-md-4 mb-4 shadow">
                         <img src={user.avatar} className="card-img-top" height="500px" alt="avatar pic"></img>
                         <div className="card-body">
                             <h5 className="card-title">Name: {user.firstName} {user.lastName}</h5>
@@ -94,6 +99,12 @@ const SwipingPageList = () => {
                 )
             })}
             </div>
+            :
+            <div className="alert alert-danger py-10" role="alert">
+                Please login!
+            </div>
+            }
+
         </div>
 
     );
