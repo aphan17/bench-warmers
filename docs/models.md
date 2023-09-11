@@ -2,6 +2,7 @@
 
 ### Users
 - location gym references location gym from the location model
+
 | Name | Type | Unique | Optional |
 | ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no |
@@ -41,6 +42,7 @@
 ### Attendees
 - event id references the id from the events model
 - user id references the id from the users model
+
 | Name | Type | Unique | Optional |
 | ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no |
