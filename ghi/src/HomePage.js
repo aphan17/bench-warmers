@@ -19,7 +19,7 @@ function MainPage() {
     you're not just finding a gym buddy; you're finding a partner in your pursuit of a healthier, stronger you. Welcome to your fitness adventure!
     </div>
     <div className="col">
-    We are based in San Jose so we highly reccomend selecting your gym to make it eaiser for your new gym buddy to find you!
+    We are based in San Jose so we highly reccomend selecting your gym to make it eaiser for your new gym buddy to find you.
     </div>
     </div>
     </div>
