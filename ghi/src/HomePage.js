@@ -16,7 +16,7 @@ function MainPage() {
     We're thrilled to have you here on our website, dedicated to helping you find the perfect gym buddy to share your fitness goals,
     challenges, and triumphs. Whether you're a seasoned fitness enthusiast looking to push your limits or someone taking the first steps on their fitness journey,
     our platform is designed to connect you with like-minded individuals who share your passion for wellness. We are based in San Jose so we highly reccomend selecting
-    your gym to make it eaiser for your new gym buddy to find you. Together, we believe in the power of motivation, accountability,
+    your gym to make it easier for your new gym buddy to find you. Together, we believe in the power of motivation, accountability,
     and support to help you achieve your fitness aspirations. So, dive in, and find your workout partner you've been waiting for, because here,
     you're not just finding a gym buddy; you're finding a partner in your pursuit of a healthier, stronger you. Welcome to your fitness adventure!
     </div>
