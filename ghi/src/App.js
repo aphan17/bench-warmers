@@ -39,9 +39,9 @@ function App() {
             <Route path="/login" element={<LoginForm/>}></Route>
             <Route path="/profile/page" element={<UserProfilePage />} />
             <Route path="/create/users" element={<SignUpForm/>}/>
-            <Route path="users" element={<SwipingPageList/>}/>
-            <Route path="favorites/users" element={<BookmarkedUsers/>} />
-            <Route path="card/events" element={<CardEvents />}></Route>
+            <Route path="/users" element={<SwipingPageList/>}/>
+            <Route path="/favorites/users" element={<BookmarkedUsers/>} />
+            <Route path="/card/events" element={<CardEvents />}></Route>
             <Route path="/create/event" element={<EventForm/>}></Route>
             <Route path="/list/bookmarkedevents" element={<BookMarkedEvents/>}></Route>
           </Routes>

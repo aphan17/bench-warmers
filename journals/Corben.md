@@ -19,3 +19,9 @@ currently having issues with getting current user
 ### 8/28/2023 ###
 Finally finished user profile page. Should have all the data
 from the logged in user.
+
+### 9/11/2023 ###
+Been very busy but I have made an edit profile feature, main/landing page,
+location table and endpoints. Unit tests for said location endpoints, worked as
+a group on frontend deployments. Did general styling for event form & create user
+form, as well as my own profile pages and main.
