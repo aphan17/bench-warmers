@@ -1,3 +1,11 @@
+<!-- Sept 11, 2023 -->
+
+Today, I worked on the final frontend styling and functionality on the find users and favorited users page. As a team, we worked on the README file together.
+
+<!-- Week of Sept 4 through Sept 8, 2023 -->
+
+This week, I worked and finished the get users front end page and favorited users front end page. Added in location gym into both the backend for users and having it display the location on the user card page. As a team, we also worked on deployment. I also implemented the favorites users backend endpoints.
+
 <!-- August 28, 2023 -->
 
 Today, I am still working on the get users frontend page.
