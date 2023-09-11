@@ -3,7 +3,7 @@
 ### Users
 - location gym references location gym from the location model
 | Name | Type | Unique | Optional
-| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no
 | username | string | yes | no
 | firstName | string | no | no
@@ -18,7 +18,7 @@
 - User_id and favorite_id are both foreign keys, referencing the ids in the users model
 
 | Name | Type | Unique | Optional
-| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no
 | user_id | int | yes | no
 | favorite_id | int | yes | no
@@ -28,7 +28,7 @@
 - location id references location gym from the location model
 
 | Name | Type | Unique | Optional
-| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no
 | creator_id | int | no | no
 | name | string | no | no
@@ -42,7 +42,7 @@
 - event id references the id from the events model
 - user id references the id from the users model
 | Name | Type | Unique | Optional
-| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- | ----------- |
 | id | int | yes | no
 | event_id | int | yes | no
 | user_id | int | yes | no
