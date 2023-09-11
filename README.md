@@ -6,9 +6,9 @@
 
 ## Design
 
-- [API Design] (docs/apiDesign.md)
-- [Models] (docs/models.md)
-- [GHI] (docs/diagrams.md)
+- [API Design](/docs/apiDesign.md)
+- [Models](/docs/models.md)
+- [GHI](/docs/diagrams.md)
 
 
 ## Intended Market
