@@ -22,7 +22,7 @@ Creating an account, expected input:
   "lastName": "cado",
   "password": "password",
   "bio": "its an avocadooo",
-  "avatar": "https://images.pexels.com/photos/2228553/pexels-photo-2228553.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "avatar": "https://images.pexels.com/photos/16652420/pexels-photo-16652420/free-photo-of-a-pug-in-dogs-clothing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800",
   "location_gym": "Planet Fitness"
 }
 ```
@@ -39,7 +39,7 @@ Creating an account, expected output:
     "lastName": "cado",
     "email": "avo@gmail.com",
     "bio": "its an avocadooo",
-    "avatar": "https://images.pexels.com/photos/2228553/pexels-photo-2228553.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "avatar": "https://images.pexels.com/photos/16652420/pexels-photo-16652420/free-photo-of-a-pug-in-dogs-clothing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800",
     "location_gym": "Planet Fitness"
   }
 }
@@ -64,28 +64,30 @@ Get an account expected output, expected response body:
 Updating a user requires the userid and the following request body:
 ```
 {
-  "username": "potato",
-  "email": "potato@gmail.com",
-  "firstName": "po",
-  "lastName": "tate",
+  "username": "avocado",
+  "email": "avo@gmail.com",
+  "firstName": "avo",
+  "lastName": "cado",
   "password": "password",
-  "bio": "potato is me, potato is i, i am potato!!",
-  "avatar": "https://i.localised.com/img/uo/product/04f4afaa-5836-44b0-b3ae-2f4534e09f0d.jpg",
-  "location_gym": "24hr fitness"
+  "bio": "its an avocadooo!!!",
+  "avatar": "https://images.pexels.com/photos/16652420/pexels-photo-16652420/free-photo-of-a-pug-in-dogs-clothing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "location_gym": "Planet Fitness"
 }
 ```
 Updating a user, expected response body:
 ```
-{
-  "id": 2,
-  "username": "potato",
-  "firstName": "po",
-  "lastName": "tate",
-  "email": "potato@gmail.com",
-  "bio": "potato is me, potato is i, i am potato!!",
-  "avatar": "https://i.localised.com/img/uo/product/04f4afaa-5836-44b0-b3ae-2f4534e09f0d.jpg",
-  "location_gym": "24hr fitness"
+{ 
+  "id": 3,
+  "username": "avocado",
+  "email": "avo@gmail.com",
+  "firstName": "avo",
+  "lastName": "cado",
+  "password": "password",
+  "bio": "its an avocadooo!!!",
+  "avatar": "https://images.pexels.com/photos/16652420/pexels-photo-16652420/free-photo-of-a-pug-in-dogs-clothing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "location_gym": "Planet Fitness"
 }
+
 ```
 
 

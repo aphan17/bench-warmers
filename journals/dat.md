@@ -1,3 +1,41 @@
+<!-- September 11,  2023 -->
+
+Group:  Due Date!!! Finished Deployment from last week. Today we verified as a group all components are working form backend to frontend. Clean up a little of code and discuss a potential AboutUs page for stretch goals. We added a little bit of styling to our main page and adjusted the nav bar to display certain links for login users. We also worked on Readme.md file and made sure the Excalidraw and endpoints input/output are included. Very proud of the work we done as a team!
+
+<!-- September 8,  2023 -->
+
+Group:  As a group we started our backend deployment today. So far no major blockers. We adjusted our gitlab.yml and docker yaml file as needed. We are following the lecture notes provided by Rosheen. After completing as much deployment as possible, I plan on going back and cleaning some of my code to pass the lint pipeline.
+
+self: Worked on error handling for Attendees routers and queries. Beginning to make sure dead codes are taken out.
+
+<!-- September 7,  2023 -->
+
+Self:  Today, I finish my logic for checking if an attendee has already attend an event. If the current user_id matches the event_id a state named shouldBedisbaled becomes true and the button attend would be disabled and cannot be pressed. I am planning on putting two of my async functions into one function so that I can pass both async function into one onClick.
+
+Self: Added two extra states to manages the Attend button ---> Already Attending and color from Green --> Gray
+
+Group: Started looking into Deployment
+
+<!-- September 6,  2023 -->
+
+Self: My ah-ha moments today was being able to unhashed the token retrieving the current user Id from fetchWithToken. The issue I am having now is creating another state that hold the current rsvp and passing that into my EventCard components. I am planning on working on the logic today that checks for current login user id in the attendees table.
+
+<!-- September 5,  2023 -->
+
+Self: Minor block on how to get current user's info in order to filter for matching event_id to disable attending button. I could  fetch from user's endpoint for current user data but trying to avoid that since I can extract current user Id with fetchWithToken. After lunch, I plan on refactoring components to try and work with getting current user id.
+
+<!-- September 1,  2023 -->
+
+Self: Started on disabling button so that attendee cannot attend the same event more than once. Two possible way to approaching the problem. Fetch and filter to an endpoint or check table if user_id matches event_id. I will work on this feature for the rest of the day.
+
+Group: Marcus's Delete function should reactivate attending button should the attendee decides to attend the event again after cancellation.
+
+<!-- August 31,  2023 -->
+
+Group: Discussed new tables and how data should be received and validated through Pydantic model.
+
+self: Works on unit test trying to get mock token. Having a minor blocker regarding creating mock data and mock token. Possibly will switch to GET to make it more simple.
+
 <!-- August 30,  2023 -->
 
 Self: Today I revisted my Signup Form and added in a navigate feature that would navigate the new user to their profile page. I created a new branch called Dat-branch and planning to merge sometimes today if i have time.
