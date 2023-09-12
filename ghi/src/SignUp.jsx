@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import avatars from "./PreselectedAvatar";
 
 
 
@@ -169,17 +169,14 @@ export default function SignUpForm() {
                 </label>
               </div>
               <div className="form-floating mb-3">
-                <input
-                  value={avatar}
-                  onChange={handleAvatarChange}
-                  placeholder="avatar"
-                  required
-                  type="text"
-                  name="avatar"
-                  id="avatar"
-                  className="form-control"
-                />
-                <label htmlFor="Avatar">Avatar</label>
+                <select id="Avatar" onChange={handleAvatarChange} value={avatar} required name="avatar" className="form-select" >
+                <option value="">Choose a profile picture</option>
+                  {avatars.map(pfp => {
+                  return (
+                  <option key={pfp.id} value={pfp.link}> {pfp.name} </option>
+                  );
+                  })};
+                </select>
               </div>
               <div className="form-floating mb-3">
                 <input

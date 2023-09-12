@@ -329,6 +329,8 @@ Get a specific location by location id, expected response body:
 
 ### Favorites
 
+Users can favorite another user **ONLY ONCE!!**
+
 | Action | Method | URL
 | ----------- | ----------- | ----------- |
 | Get all favorites| GET | http://localhost:8000/api/favorites/
