@@ -24,6 +24,15 @@ The Bench is a website targeted to regular gym goers to find their new gym buddi
 - Users can create events
 
 
+## Frontend Create Account Information Error
+When creating or editing an account, some avatar urls will cause an error that users are unable to RSVP an event. To bypass this error, please use the following avatar url given below:
+
+https://images.pexels.com/photos/16652420/pexels-photo-16652420/free-photo-of-a-pug-in-dogs-clothing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800
+
+Error message:
+![Img](/docs/images/error.png)
+
+
 ## Project Initialization
 
 1. Fork this repository:
