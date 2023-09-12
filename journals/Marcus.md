@@ -28,3 +28,25 @@ updated back end end points to wokr with updated tables and fixed back end auth
 ### 8/31/2023 ###
 worked on creating attendees tables to have queries and routers
 worked on creating the book marked events for a logged in user
+
+### 9/4/2023 ###
+worked on creating attendees tables to have queries and routers
+worked on creating the book marked events for a logged in user
+
+
+### 9/5/2023 ###
+finished bookmark events
+finished create attendess routers and queries
+
+
+### 9/6/2023 ###
+finished unit testing
+
+### 9/7/2023 ###
+finished CICD
+
+### 9/8/2023 ###
+cleaned up front end
+
+### 9/11/2023 ###
+finsihed read me as a group
